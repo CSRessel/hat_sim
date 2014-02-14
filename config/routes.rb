@@ -1,5 +1,8 @@
 HatSim::Application.routes.draw do
 
+  # For devise routes:
+  devise_for :users
+
   # The static pages:
   root 'static_pages#home'
   match '/about',   to: 'static_pages#about',   via: 'get'
