@@ -77,4 +77,8 @@ HatSim::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # For devise:
+  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  # TODO: set :host to the website's final URL
 end
