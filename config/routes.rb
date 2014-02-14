@@ -3,6 +3,12 @@ HatSim::Application.routes.draw do
   # For devise routes:
   devise_for :users
 
+  # For authentication pages:
+  # TODO: finish authenitcation routing
+  #match '/signup'
+  #match '/signin'
+  #match '/signout'
+
   # The static pages:
   root 'static_pages#home'
   match '/about',   to: 'static_pages#about',   via: 'get'
