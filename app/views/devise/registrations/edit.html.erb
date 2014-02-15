@@ -9,7 +9,33 @@
   <div><%= f.label :region %><br />
   <%= f.text_field :region %></div>
 
-  <%# TODO: add buttons for selecting class prefs %>
+  <div>
+    Preference for scout:     <%= f.select :class_scout, options_for_select(%w[1 2 3 4 5 6 7 8 9]) %>
+  </div>
+  <div>
+    Preference for soldier:   <%= f.select :class_soldier, options_for_select(%w[1 2 3 4 5 6 7 8 9]) %>
+  </div>
+  <div>
+    Preference for pyro:      <%= f.select :class_pyro, options_for_select(%w[1 2 3 4 5 6 7 8 9]) %>
+  </div>
+  <div>
+    Preference for demo:      <%= f.select :class_demo, options_for_select(%w[1 2 3 4 5 6 7 8 9]) %>
+  </div>
+  <div>
+    Preference for heavy:     <%= f.select :class_heavy, options_for_select(%w[1 2 3 4 5 6 7 8 9]) %>
+  </div>
+  <div>
+    Preference for engineer:  <%= f.select :class_engineer, options_for_select(%w[1 2 3 4 5 6 7 8 9]) %>
+  </div>
+  <div>
+    Preference for medic:     <%= f.select :class_medic, options_for_select(%w[1 2 3 4 5 6 7 8 9]) %>
+  </div>
+  <div>
+    Preference for sniper:    <%= f.select :class_sniper, options_for_select(%w[1 2 3 4 5 6 7 8 9]) %>
+  </div>
+  <div>
+    Preference for spy:       <%= f.select :class_spy, options_for_select(%w[1 2 3 4 5 6 7 8 9]) %>
+  </div>
 
   <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
