@@ -1,5 +1,13 @@
 HatSim::Application.routes.draw do
 
+  resources :servers
+
+  get "servers/index"
+  get "servers/new"
+  get "servers/create"
+  get "servers/show"
+  get "servers/destroy"
+
   # For devise routes:
   devise_for :users
 

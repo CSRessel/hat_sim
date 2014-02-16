@@ -1,0 +1,33 @@
+<%= form_for @server do |form| %>
+
+<% if form.object.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      The form contains <%= pluralize(form.object.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% form.object.errors.full_messages.each do |msg| %>
+      <li>* <%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form.label :address %>
+<%= form.text_field :address %>
+<br>
+<%= form.label :region %>
+<%= form.text_field :region %>
+<br>
+<%= form.label :password %>
+<%= form.text_field :password %>
+<br>
+<%= form.label :dedicated %>
+<%= form.check_box :dedicated %>
+<br>
+<%= form.label :map %>
+<%= form.text_field :map %>
+<br>
+<%= form.submit 'Add Server' %>
+
+<% end %>
