@@ -6,6 +6,5 @@ class Team < ActiveRecord::Base
   validates :game, presence: true, inclusion: { in: %w(highlander 6v6 unspecified) }
 
   validates :name, presence: true, uniqueness: true
-  # TODO: add team name indexes for uniqueness
 
 end

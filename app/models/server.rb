@@ -5,7 +5,6 @@ class Server < ActiveRecord::Base
 
   VALID_SERVER_ADDRESS = /\A\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}\z/
   validates :address, presence: true, format: { with: VALID_SERVER_ADDRESS }, uniqueness: true
-  # TODO: add server address indexes for uniqueness
 
   #validates :map, length: { minimum: 4 }
 

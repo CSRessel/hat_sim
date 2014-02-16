@@ -6,11 +6,11 @@ class ServersController < ApplicationController
     else
       @servers = Server.all.order(:players)
     end
-    #TODO: Order by maxplayers - players by default
+    # TODO: order by maxplayers - players by default
   end
 
   def new
-    # TODO: Before filter
+    # TODO: before filter instead of if's for admin only pgs
     if current_user.try(:admin?)
       @server = Server.new
     else
@@ -28,7 +28,7 @@ class ServersController < ApplicationController
         render 'new'
       end
     else
-      render root_path
+      redirect_to root_path
     end
   end
 
@@ -39,7 +39,6 @@ class ServersController < ApplicationController
   def destroy
     Server.find(params[:id]).destroy
     redirect_to root_path
-    # TODO: do something
   end
 
   private

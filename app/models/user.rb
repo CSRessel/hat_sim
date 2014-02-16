@@ -23,7 +23,6 @@ class User < ActiveRecord::Base
   validates :class_sniper,    numericality: { greater_than: 0, less_than: 10, only_integer: true }
 
   validates :steam_link, presence: true, uniqueness: { case_sensitive: false }
-  # TODO: add steam_link indexes for uniqueness
 
   # TODO: add region support here
 
