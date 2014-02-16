@@ -8,15 +8,16 @@ class CreateServers < ActiveRecord::Migration
       t.string :name
       t.integer :maxplayers
       t.boolean :dedicated
+      t.integer :free_spots
+      t.integer :players, default:0
 
       # Dedicated only
-      t.string :game
+      t.string :game, default: "unspecified", null:false
       t.string :password
 
       # Non dedicated only
       t.string :tags
       t.integer :flags, default:0
-      t.integer :players, default:0
       t.integer :rating
 
       t.timestamps

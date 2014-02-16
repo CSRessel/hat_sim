@@ -12,7 +12,9 @@ class Server < ActiveRecord::Base
 
   validates :password, length: { minimum: 8 }, presence: true, if: :is_dedicated?
   validates :game, inclusion: { in: %w(highlander 6v6 unspecified) }, if: :is_dedicated?
+  validates :game, inclusion: { in: %w(unspecified) }, if: :is_not_dedicated?
 
+  # TODO: email alerts for flagged servers
   validates :flags, numericality: { greater_than_or_equal_to: 0, only_integer: true }
   validates :players, numericality: { greater_than_or_equal_to: 0, only_integer: true }
   #validates :maxplayers, numericality: { greater_than_or_equal_to: 1, only_integer: true }, presence: true, if: :is_not_dedicated?

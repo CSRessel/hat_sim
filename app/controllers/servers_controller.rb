@@ -4,7 +4,6 @@ class ServersController < ApplicationController
 
   def index
     @search = Server.search(params[:q])
-    # TODO: order by maxplayers - players by default
     @servers = @search.result(distinct: true)
   end
 

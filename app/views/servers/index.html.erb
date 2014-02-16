@@ -1,9 +1,7 @@
 <% provide :title, 'Servers'%>
-<h1>Servers!</h1>
 
-<%= render @servers %>
-
-<h2>Search for servers:</h2>
+<%# TODO: figure out how to make seperate search page %>
+<h1>Search for servers:</h1>
 <%= search_form_for @search, url: search_servers_path,
                         html: { method: :post } do |f| %>
   <div>
@@ -17,50 +15,50 @@
   </div>
 
   <div>
-    <%= f.label :map_cont %>
-    <%= f.text_field :map_cont %>
+    <%= f.label :players_gteq, "Number of players between" %>
+    <%= f.text_field :players_gteq %>
+    <%= f.label :players_lteq, "and" %>
+    <%= f.text_field :players_lteq %>
   </div>
 
   <div>
-    <%= f.label :players_gt %>
-    <%= f.text_field :players_gt %>
+    <%= f.label :maxplayers_gteq, "Max number of players between" %>
+    <%= f.text_field :maxplayers_gteq %>
+    <%= f.label :maxplayers_lteq, "and" %>
+    <%= f.text_field :maxplayers_lteq %>
   </div>
 
   <div>
-    <%= f.label :players_lt %>
-    <%= f.text_field :players_lt %>
+    <%= f.label :free_spots_gteq, "Number of free spots between" %>
+    <%= f.text_field :free_spots_gteq %>
+    <%= f.label :free_spots_lteq, "and" %>
+    <%= f.text_field :free_spots_lteq %>
   </div>
 
   <div>
-    <%= f.label :free_spots_gt%>
-    <%= f.text_field :free_spots_gt%>
+    Only dedicated servers (probably competitive)?<%= f.check_box :dedicated_true %>
   </div>
 
   <div>
-    <%= f.label :free_spots_lt%>
-    <%= f.text_field :free_spots_lt%>
+    Only nondedicated servers?<%= f.check_box :dedicated_false %>
   </div>
 
   <div>
-    <%= f.label :maxplayers_gt %>
-    <%= f.text_field :maxplayers_gt %>
-  </div>
-
-  <div>
-    <%= f.label :maxplayers_lt %>
-    <%= f.text_field :maxplayers_lt %>
-  </div>
-
-  <div>
-    Dedicated server (probably competitive): <%= f.check_box :dedicated_true %>
-  </div>
-
-  <div>
-    Game type: <%= f.select :game_eq, options_for_select(%w[highlander 6v6 unspecified]) %>
+    <%= f.select :game_eq, options_for_select(%w[unspecified highlander 6v6], "Game type:") %>
   </div>
 
   <div>
     <%= f.submit "search" %>
   </div>
 
+<% end %>
+
+<h1>Servers!</h1>
+
+<% if @servers.empty? %>
+  <div>
+    No servers found.
+  </div>
+<% else %>
+  <%= render @servers %>
 <% end %>

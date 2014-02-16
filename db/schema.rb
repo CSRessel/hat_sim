@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140216171354) do
+ActiveRecord::Schema.define(version: 20140216201213) do
 
   create_table "chains", force: true do |t|
     t.string   "title",      null: false
@@ -37,13 +37,13 @@ ActiveRecord::Schema.define(version: 20140216171354) do
   end
 
   create_table "servers", force: true do |t|
-    t.string   "address",                null: false
+    t.string   "address",                            null: false
     t.string   "map"
     t.string   "region"
     t.string   "name"
     t.integer  "maxplayers"
     t.boolean  "dedicated"
-    t.string   "game"
+    t.string   "game",       default: "unspecified", null: false
     t.string   "password"
     t.string   "tags"
     t.integer  "flags",      default: 0
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20140216171354) do
     t.integer  "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "free_spots"
   end
 
   add_index "servers", ["address"], name: "index_servers_on_address", unique: true
