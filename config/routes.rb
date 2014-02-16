@@ -1,7 +1,7 @@
 HatSim::Application.routes.draw do
 
   # For devise routes:
-  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
+  devise_for :users, :path => '', :path_names => { :sign_in => "signin", :sign_out => "signout", :sign_up => "register" }
 
   # The static pages:
   root 'static_pages#home'
