@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140214045715) do
+ActiveRecord::Schema.define(version: 20140216154710) do
 
   create_table "chains", force: true do |t|
     t.string   "title",      null: false
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(version: 20140214045715) do
     t.integer  "class_spy",              default: 1,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "admin"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
