@@ -1,34 +1,24 @@
 class ServersController < ApplicationController
 
+  before_filter :require_admin, only:[ :new, :create, :update, :destroy ]
+
   def index
-    if params[:search]
-      @servers = Server.all.order(:players)
-    else
-      @servers = Server.all.order(:players)
-    end
+    @search = Server.search(params[:q])
     # TODO: order by maxplayers - players by default
+    @servers = @search.result(distinct: true)
   end
 
   def new
-    # TODO: before filter instead of if's for admin only pgs
-    if current_user.try(:admin?)
-      @server = Server.new
-    else
-      redirect_to root_path
-    end
+    @server = Server.new
   end
 
   def create
-    if current_user.try(:admin?)
-      @server = Server.new(server_params)
-      if @server.save
-        flash[:success] = 'Server created!'
-        redirect_to servers_path
-      else
-        render 'new'
-      end
+    @server = Server.new(server_params)
+    if @server.save
+      flash[:success] = 'Server created!'
+      redirect_to servers_path
     else
-      redirect_to root_path
+      render 'new'
     end
   end
 
@@ -41,7 +31,18 @@ class ServersController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    index
+    render :index
+  end
+
   private
+
+  def require_admin
+    if not current_user.try(:admin?)
+      redirect_to root_path
+    end
+  end
 
   def server_params
     params.require(:server).permit(:address, :region, :password, :dedicated)

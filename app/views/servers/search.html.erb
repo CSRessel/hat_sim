@@ -1,7 +1,4 @@
-<% provide :title, 'Servers'%>
-<h1>Servers!</h1>
-
-<%= render @servers %>
+<% provide :title, "Search" %>
 
 <h2>Search for servers:</h2>
 <%= search_form_for @search, url: search_servers_path,
@@ -32,13 +29,13 @@
   </div>
 
   <div>
-    <%= f.label :free_spots_gt%>
-    <%= f.text_field :free_spots_gt%>
+    <%= f.label :free_spots_gt %>
+    <%= f.text_field :free_spots_gt %>
   </div>
 
   <div>
-    <%= f.label :free_spots_lt%>
-    <%= f.text_field :free_spots_lt%>
+    <%= f.label :free_spots_lt %>
+    <%= f.text_field :free_spots_lt %>
   </div>
 
   <div>

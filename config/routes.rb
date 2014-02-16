@@ -1,12 +1,19 @@
 HatSim::Application.routes.draw do
 
-  resources :servers
+  # For ransack's search path
+  resources :servers do
+    collection do
+      match 'search' => 'servers#search', via: [:get, :post], as: :search
+    end
+  end
 
-  get "servers/index"
-  get "servers/new"
-  get "servers/create"
-  get "servers/show"
-  get "servers/destroy"
+  # For the server paths
+  resources :servers
+  #get "servers/index"
+  #get "servers/new"
+  #get "servers/create"
+  #get "servers/show"
+  #get "servers/destroy"
 
   # For devise routes:
   devise_for :users, :path => '', :path_names => { :sign_in => "signin", :sign_out => "signout", :sign_up => "register" }
