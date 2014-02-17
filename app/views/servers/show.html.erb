@@ -1,2 +1,11 @@
-<h1>Servers#show</h1>
-<p>Find me in app/views/servers/show.html.erb</p>
+<h1><%= @server.name %></h1>
+<div>Address: <%= @server.address %></div>
+<div>Password: <%= @server.password %></div>
+<div>Region: <%= @server.region %></div>
+<div>Players: <%= @server.players %>/<%= @server.maxplayers %></div>
+<div>Map: <%= @server.map %></div>
+<div>Dedicated: <%= @server.dedicated %></div>
+<% if @server.is_dedicated? %>
+<div>Gamemode: <%= @server.game %></div>
+<% end %>
+<div><%= link_to 'back', servers_path %> | <a href="steam://connect/<%= @server.address %>/<%= @server.password %>">join</a></div>
