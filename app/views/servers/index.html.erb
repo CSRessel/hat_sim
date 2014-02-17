@@ -45,11 +45,11 @@
   </div>
 
   <div>
-    Game type: <%= f.select :game_eq, options_for_select(%w[unspecified highlander 6v6]) %>
+    Game type: <%= f.select :game_eq, options_for_select(%w[  unspecified highlander 6v6]), :include_blank=>"game mode" %>
   </div>
 
   <div>
-    Region (by timezone): <%= f.select :region_eq, options_for_select(%w[EST CST MST PST]) %>
+    Region (by timezone): <%= f.select :region_eq, options_for_select(%w[  EST CST MST PST]), :include_blank=>"timezone" %>
   </div>
 
   <div>
@@ -60,10 +60,32 @@
 
 <h1>Servers!</h1>
 
+<%# What Railscasts recommends: (not sure why no partials, but they know better) %>
 <% if @servers.empty? %>
   <div>
-    No servers found.
+  	No servers found.
   </div>
 <% else %>
-  <%= render @servers %>
+  <table id="servers">
+    <tr>
+      <th><%= sort_link @search, :name, "Server Name" %></th>
+      <th><%= sort_link @search, :region, "Region" %></th>
+      <th><%= sort_link @search, :dedicated, "Competitive?" %></th>
+      <th><%= sort_link @search, :game, "Game mode" %></th>
+      <% if current_user.try(:admin?) %>
+        <th>Delete server:</th>
+      <% end %>
+    </tr>
+  <% @servers.each do |server| %>
+    <tr>
+      <td><%= link_to server.name, server %></td>
+      <td><%= server.region %></td>
+      <td><%= server.dedicated %></td>
+      <td><%= server.game %></td>
+      <% if current_user.try(:admin?) %>
+        <td><%= link_to 'delete', server, :method=>:delete %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </table>
 <% end %>

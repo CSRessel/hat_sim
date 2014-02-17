@@ -45,7 +45,7 @@ class ServersController < ApplicationController
   end
 
   def server_params
-    params.require(:server).permit(:address, :region, :password, :dedicated)
+    params.require(:server).permit(:address, :name, :password, :tags, :region, :dedicated, :game)
   end
 
 end

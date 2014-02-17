@@ -16,17 +16,23 @@
 <%= form.label :address %>
 <%= form.text_field :address %>
 <br>
-<%= form.label :region %>
-<%= form.text_field :region %>
+<%= form.label :name %>
+<%= form.text_field :name %>
 <br>
 <%= form.label :password %>
 <%= form.text_field :password %>
 <br>
-<%= form.label :dedicated %>
+<%= form.label :tags %>
+<%= form.text_field :tags %>
+<br>
+<%= form.label :dedicated, "Competitive server?" %>
 <%= form.check_box :dedicated %>
 <br>
-<%= form.label :map %>
-<%= form.text_field :map %>
+<%= form.label :region, "Region (by timezone)"%>
+<%= form.select :region, options_for_select(%w[EST CST MST PST]) %>
+<br>
+<%= form.label :game, "Game mode:" %>
+<%= form.select :game, options_for_select(%w[unspecified highlander 6v6]) %>
 <br>
 <%= form.submit 'Add Server' %>
 

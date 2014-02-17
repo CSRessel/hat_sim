@@ -6,8 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Server.create!(address: '1.2.3.4:5', map: 'ctf_example', password: 'examplepassword', dedicated: false, players: 3, maxplayers: 30, name: 'server 1 potato', region: 'EST')
-Server.create!(address: '3.1.4.1:5', map: 'achievemenent_idle', password: 'examplepassword', dedicated: false, players: 8, maxplayers: 30, name: 'server 2', region: 'EST')
-Server.create!(address: '255.255.255.255:12309', map: 'gah_maps', password: 'examplepassword', dedicated:true, players: 39, maxplayers: 12309, name: 'server 3', region: 'EST')
+Server.create!(address: '1.2.3.4:5', map: 'ctf_example', password: 'examplepassword', dedicated: false, players: 3, maxplayers: 30, name: 'server 1', region: 'EST')
+Server.create!(address: '3.1.4.1:5', map: 'achievemenent_idle', password: 'examplepassword', dedicated: false, players: 8, maxplayers: 30, name: 'server 2', region: 'MST')
+Server.create!(address: '2.5.5.2:19', map: 'gah_maps', password: 'examplepassword', dedicated: true, players: 39, maxplayers: 109, name: 'server 3', region: 'PST', game: '6v6')
+Server.create!(address: '2.6.5.2:29', map: 'cp_dustbowl', password: 'examplepassword', dedicated:true, players: 5, maxplayers: 24, name: 'server 4', region: 'EST', game: 'highlander')
 
-User.create!(username: 'admin', email: 'cressel@andover.edu', steam_link: 'clyphord', region: 'EST', admin: true, password: 'password');
+User.create!(username: 'admin1', email: 'cressel@andover.edu', steam_link: 'clyphord', region: 'EST', admin: true, password: 'password');
+User.create!(username: 'admin2', email: 'tnemec@andover.edu', steam_link: 'something', region: 'EST', admin: true, password: 'password');
