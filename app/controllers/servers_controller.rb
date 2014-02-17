@@ -1,6 +1,7 @@
 class ServersController < ApplicationController
 
-  before_filter :require_admin, only:[ :new, :create, :update, :destroy ]
+  before_filter :require_admin, except:[ :index, :show, :search ]
+  before_filter :authenticate_user!, :except => [ :index, :search ]
 
   def index
     @search = Server.search(params[:q])

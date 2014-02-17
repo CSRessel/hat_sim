@@ -16,7 +16,7 @@ class Server < ActiveRecord::Base
   # TODO: email alerts for flagged servers
   validates :flags, numericality: { greater_than_or_equal_to: 0, only_integer: true }
 
-  validates :players, numericality: { greater_than_or_equal_to: 0, only_integer: true }
+  #validates :players, numericality: { greater_than_or_equal_to: 0, only_integer: true }
   #validates :maxplayers, numericality: { greater_than_or_equal_to: 1, only_integer: true }, presence: true, if: :is_not_dedicated?
 
   validates :tags, length: { maximum: 30 }
