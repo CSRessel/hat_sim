@@ -40,7 +40,7 @@ HatSim::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Set to :debug to see everything in the log.
   config.log_level = :info
@@ -79,6 +79,19 @@ HatSim::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # For devise:
-  #config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-  # TODO: set :host to the website's final URL
+  # TODO: set up email sending with actual account
+  # set ENV variables in root project directory, in file ".env"
+  # load ENV according to this: http://stevechristie.tumblr.com/post/35158776548/how-to-set-up-local-environmental-variables
+  #config.action_mailer.default_url_options = { :host => "http://www.yourdomain.com" }
+
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.smtp_settings = {
+  #address: "smtp.gmail.com",
+  #port: 587,
+  #domain: ENV["GMAIL_DOMAIN"],
+  #authentication: "plain",
+  #enable_starttls_auto: true,
+  #user_name: ENV["GMAIL_USERNAME"],
+  #password: ENV["GMAIL_PASSWORD"]
+  #}
 end

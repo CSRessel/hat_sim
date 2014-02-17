@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :confirmable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :class_scout,     numericality: { greater_than: 0, less_than: 10, only_integer: true }
@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   validates :class_engineer,  numericality: { greater_than: 0, less_than: 10, only_integer: true }
   validates :class_medic,     numericality: { greater_than: 0, less_than: 10, only_integer: true }
   validates :class_sniper,    numericality: { greater_than: 0, less_than: 10, only_integer: true }
+
+  validates :username, presence: true, uniqueness: true
 
   validates :steam_link, presence: true, uniqueness: { case_sensitive: false }
 
