@@ -21,7 +21,7 @@ class Server < ActiveRecord::Base
 
   validates :tags, length: { maximum: 30 }
 
-  #validates :map, length: { minimum: 4 }
+  validates :map, length: { minimum: 4 }
 
   def is_dedicated?
     dedicated
@@ -32,5 +32,3 @@ class Server < ActiveRecord::Base
   end
 
 end
-
-# TODO: figure out why validations make presence need to equal true

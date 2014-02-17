@@ -1,6 +1,7 @@
 <% provide :title, 'Servers'%>
 
 <%# TODO: figure out how to make seperate search page %>
+<%# TODO: have form "remember" previous search %>
 <h1>Search for servers:</h1>
 <%= search_form_for @search, url: search_servers_path,
                         html: { method: :post } do |f| %>
