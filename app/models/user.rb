@@ -24,6 +24,6 @@ class User < ActiveRecord::Base
 
   validates :steam_link, presence: true, uniqueness: { case_sensitive: false }
 
-  # TODO: add region support
+  validates :region, inclusion: { in: %w(EST CST MST PST) }
 
 end

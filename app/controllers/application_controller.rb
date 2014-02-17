@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
       :username,
       :email,
       :steam_link,
+      :region,
       :password,
       :password_confirmation,
       :commit

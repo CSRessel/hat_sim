@@ -36,15 +36,19 @@
   </div>
 
   <div>
-    Only dedicated servers (probably competitive)?<%= f.check_box :dedicated_true %>
+    Only competitive servers? <%= f.check_box :dedicated_true %>
   </div>
 
   <div>
-    Only nondedicated servers?<%= f.check_box :dedicated_false %>
+    Only noncompetitive servers? <%= f.check_box :dedicated_false %>
   </div>
 
   <div>
-    <%= f.select :game_eq, options_for_select(%w[unspecified highlander 6v6], "Game type:") %>
+    Game type: <%= f.select :game_eq, options_for_select(%w[unspecified highlander 6v6]) %>
+  </div>
+
+  <div>
+    Region (by timezone): <%= f.select :region_eq, options_for_select(%w[EST CST MST PST]) %>
   </div>
 
   <div>

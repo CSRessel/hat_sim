@@ -12,11 +12,18 @@
   <div><%= f.label :steam_link %><br />
   <%= f.text_field :steam_link %></div>
 
+  <div><%= f.label :region %><br />
+  <%= f.text_field :region %></div>
+
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
 
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
+
+  <div>
+    Note: more options can be set in user edit after registration.
+  </div>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>

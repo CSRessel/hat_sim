@@ -25,7 +25,7 @@
   <li><%= link_to "FAQs", faq_path %></li>
   <li><%= link_to "Servers", servers_path %></li>
   <% if signed_in? %>
-    <li><%= link_to "Edit account", user_registration_path %></li>
+    <li><%= link_to "Edit account", edit_user_registration_path %></li>
     <li><%= link_to "Sign out", destroy_user_session_path %></li>
   <% else %>
     <li><%= link_to "Sign in", new_user_session_path %></li>
