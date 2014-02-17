@@ -3,59 +3,48 @@
 <%# TODO: figure out how to make seperate search page %>
 <%# TODO: have form "remember" previous search %>
 <h1>Search for servers:</h1>
-<%= search_form_for @search, url: search_servers_path,
-                        html: { method: :post } do |f| %>
+<%= search_form_for @search, url: search_servers_path, html: { method: :post } do |f| %>
   <div>
     <%= f.label :name_cont %>
     <%= f.text_field :name_cont %>
   </div>
-
   <div>
     <%= f.label :map_cont %>
     <%= f.text_field :map_cont %>
   </div>
-
   <div>
     <%= f.label :players_gteq, "Number of players between" %>
     <%= f.text_field :players_gteq %>
     <%= f.label :players_lteq, "and" %>
     <%= f.text_field :players_lteq %>
   </div>
-
   <div>
     <%= f.label :maxplayers_gteq, "Max number of players between" %>
     <%= f.text_field :maxplayers_gteq %>
     <%= f.label :maxplayers_lteq, "and" %>
     <%= f.text_field :maxplayers_lteq %>
   </div>
-
   <div>
     <%= f.label :free_spots_gteq, "Number of free spots between" %>
     <%= f.text_field :free_spots_gteq %>
     <%= f.label :free_spots_lteq, "and" %>
     <%= f.text_field :free_spots_lteq %>
   </div>
-
   <div>
     Only competitive servers? <%= f.check_box :dedicated_true %>
   </div>
-
   <div>
     Only noncompetitive servers? <%= f.check_box :dedicated_false %>
   </div>
-
   <div>
     Game type: <%= f.select :game_eq, options_for_select(%w[  unspecified highlander 6v6]), :include_blank=>"game mode" %>
   </div>
-
   <div>
     Region (by timezone): <%= f.select :region_eq, options_for_select(%w[  EST CST MST PST]), :include_blank=>"timezone" %>
   </div>
-
   <div>
     <%= f.submit "search" %>
   </div>
-
 <% end %>
 
 <h1>Servers!</h1>
