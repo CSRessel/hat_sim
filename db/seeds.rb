@@ -13,3 +13,9 @@ Server.create!(address: '2.6.5.2:29', map: 'cp_dustbowl', password: 'examplepass
 
 User.create!(username: 'admin1', email: 'cressel@andover.edu', steam_link: 'clyphord', region: 'EST', admin: true, password: 'password');
 User.create!(username: 'admin2', email: 'tnemec@andover.edu', steam_link: 'something', region: 'EST', admin: true, password: 'password');
+
+Subforum.create!(name: 'Competition')
+
+Chain.create!(title: 'Blah', body: 'bleh bleh bleh', subforum_id: '1', user_id: '1')
+
+Post.create!(content: 'bluh bluh bluh bluh', chain_id: '1', user_id: '1')

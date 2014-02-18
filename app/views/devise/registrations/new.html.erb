@@ -1,3 +1,5 @@
+<% provide :title, "Register" %>
+
 <h2>Sign up</h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
@@ -5,26 +7,19 @@
 
   <div><%= f.label :username %><br />
   <%= f.text_field :username, :autofocus => true %></div>
-
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
-
   <div><%= f.label :steam_link %><br />
   <%= f.text_field :steam_link %></div>
-
   <div><%= f.label :region %><br />
   <%= f.text_field :region %></div>
-
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
-
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
-
   <div>
     Note: more options can be set in user edit after registration.
   </div>
-
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 

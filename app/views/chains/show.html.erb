@@ -1,0 +1,30 @@
+<% provide(:title, "Thread") %>
+
+<h2><%= @chain.title %></h2>
+<div>
+  ---------------------
+</div>
+<div>
+  <%= @chain.body %>
+</div>
+<div>
+  ---------------------
+</div>
+<div>
+  <%= @chain.user.username %> at <%= @chain.created_at %>
+</div>
+<br />
+<br />
+<h3>Replies:</h3>
+<% if not @posts.empty? %>
+  <%= render @posts %>
+<% else %>
+  <div>
+    No posts yet.
+  </div>
+<% end %>
+<br />
+<br />
+<div>
+  <%= link_to 'Reply', new_post_path %>
+</div>

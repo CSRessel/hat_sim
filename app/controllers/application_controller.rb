@@ -39,4 +39,10 @@ class ApplicationController < ActionController::Base
     ) }
   end
 
+  def require_admin
+    if not current_user.try(:admin?)
+      redirect_to root_path
+    end
+  end
+
 end

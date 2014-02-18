@@ -1,0 +1,21 @@
+<%= form_for @chain do |form| %>
+  <% if form.object.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-error">
+        The form contains <%= pluralize(form.object.errors.count, "error") %>.
+      </div>
+      <ul>
+      <% form.object.errors.full_messages.each do |msg| %>
+        <li>* <%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%# TODO: add char counting for body %>
+  <div><%= form.label :title %><br />
+  <%= form.text_field :title %></div>
+  <div><%= form.label :body, "Message (max. 1000 characters):" %><br />
+  <%= form.text_area :body, :cols => "75", :rows => "15" %></div>
+  <div><%= form.submit 'Add Thread' %></div>
+<% end %>

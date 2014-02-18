@@ -36,6 +36,8 @@ class CreateStats < ActiveRecord::Migration
       t.string  :most_played_class
       t.string  :most_successful_class
 
+      t.ingeger :user_id, null:false
+
       t.timestamps
     end
   end

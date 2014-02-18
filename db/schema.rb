@@ -14,15 +14,20 @@
 ActiveRecord::Schema.define(version: 20140217015959) do
 
   create_table "chains", force: true do |t|
-    t.string   "title",      null: false
+    t.string   "title",       null: false
+    t.string   "body",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "subforum_id", null:false
+    t.integer  "user_id",     null:false
   end
 
   create_table "posts", force: true do |t|
     t.string   "content",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "chain_id",   null:false
+    t.integer  "user_id",    null:false
   end
 
   create_table "reviews", force: true do |t|
@@ -34,6 +39,8 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "server_id", null:false
+    t.integer  "user_id",   null:false
   end
 
   create_table "servers", force: true do |t|
@@ -91,6 +98,7 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.string   "most_successful_class"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id", null:false
   end
 
   create_table "subforums", force: true do |t|
@@ -112,6 +120,8 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.string   "role"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id", null:false
+    t.integer  "team_id", null:false
   end
 
   create_table "users", force: true do |t|
@@ -144,6 +154,7 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
+    t.integer  "server_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

@@ -8,6 +8,9 @@ class CreateReviews < ActiveRecord::Migration
       t.string :content
       t.string :title
 
+      t.integer :server_id, null:false
+      t.ingeger :user_id, null:false
+
       t.timestamps
     end
   end

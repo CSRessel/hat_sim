@@ -1,0 +1,3 @@
+<div>
+  <%= link_to subforum.name, subforum %> | Most recent thread: <%= subforum.chains.find(:first, :order => "created_at DESC").created_at %>
+</div>

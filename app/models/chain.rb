@@ -5,6 +5,7 @@ class Chain < ActiveRecord::Base
 
   has_many :posts
 
-  validates :title, presence: true, length: { minimum: 5, maximum: 25 }
+  validates :title, presence: true, length: { maximum: 25 }
+  validates :body, presence: true, length: { maximum: 1000 }
 
 end
