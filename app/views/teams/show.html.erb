@@ -1,2 +1,13 @@
-<h1>Teams#show</h1>
-<p>Find me in app/views/teams/show.html.erb</p>
+<% provide :title, "Team #{ @team.name } %>
+
+<h1>Team <%= @team.name %></h1>
+
+<h4>Team members:</h4>
+<% @confirmed_users.each do |confirmed_user| %>
+  <%= render 'teams/confirmed_users', :confirmed_user => confirmed_user %>
+<% end %>
+
+<h4>Unconfirmed members</h4>
+<% @unconfirmed_users.each do |unconfirmed_user| %>
+  <%= render 'teams/unconfirmed_users', :unconfirmed_user => unconfirmed_user %>
+<% end %>

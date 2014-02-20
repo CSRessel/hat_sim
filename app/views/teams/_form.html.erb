@@ -1,0 +1,21 @@
+<%= form_for @team do |form| %>
+  <% if form.object.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-error">
+        The form contains <%= pluralize(form.object.errors.count, "error") %>.
+      </div>
+      <ul>
+      <% form.object.errors.full_messages.each do |msg| %>
+        <li>* <%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div><%= form.label :name %><br />
+  <%= form.text_field :name %></div>
+  <div><%= form.label :game, "Game type:" %><br />
+  <%= form.select :game, options_for_select(%w[highlander 6v6]) %></div>
+  <%# Add dynamic adding of users %>
+  <div><%= form.submit 'Add team' %></div>
+<% end %>

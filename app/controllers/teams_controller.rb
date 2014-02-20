@@ -20,15 +20,15 @@ class TeamsController < ApplicationController
   end
 
   def index
-    @captained_teams = current_user.teams.references( :accepted )where(accepted: { active: true }).where( :captain => current_user.id )
-    @teams = current_user.teams.references( :accepted )where(accepted: { active: true }).where( 'captain != ?', current_user.id )
-    @invitations = current_user.teams.references( :accepted )where(accepted: { active: false })
+    @captained_teams = current_user.teams.references( :accepted ).where(accepted: { active: true }).where( :captain => current_user.id )
+    @teams = current_user.teams.references( :accepted ).where(accepted: { active: true }).where( "captain != ?", current_user.id )
+    @invitations = current_user.teams.references( :accepted ).where(accepted: { active: false })
   end
 
   def show
     @team = Team.find(params[:id])
-    @confirmed_users = team.users.references( :accepted )where(accepted: { active: true })
-    @unconfirmed_users = team.users.references( :accepted )where(accepted: { active: false })
+    @confirmed_users = team.users.references( :accepted ).where(accepted: { active: true })
+    @unconfirmed_users = team.users.references( :accepted ).where(accepted: { active: false })
   end
 
   def destroy
