@@ -30,9 +30,9 @@ Server.create(name: 'Bob's Server - PST', address: '200.169.3.121:1', map: 'mvm_
 Server.create(name: 'Carl's Prophunt Server - MST', address: '26.24.243.59:115', map: 'arena_de_dust', password: 'paswort', dedicated: 'false', game: 'unspecified', players: '11', maxplayers '23', region: 'MST')
 
 
-# USERS 
+# USERS
 
-User.create(username: 'admin1', email: 'cressel@andover.edu', steam_link: 'clyphord', region: 'EST', admin: true, password: 'password');
+User.create!(username: 'admin1', email: 'cressel@andover.edu', steam_link: 'clyphord', region: 'EST', admin: true, password: 'password');
 User.create!(username: 'admin2', email: 'tnemec@andover.edu', steam_link: 'something', region: 'EST', admin: true, password: 'password');
 User.create!(username: 'claire', email: 'claire73@gmail.com', steam_link: 'claire420', region: 'EST', admin: false, password: 'password');
 User.create!(username: 'heavy', email: 'heavy9@spam.com', steam_link: 'heavy420', region: 'CST', admin: false, password: 'password');
