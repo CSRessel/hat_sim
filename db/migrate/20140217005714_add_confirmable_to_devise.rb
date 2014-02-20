@@ -7,6 +7,7 @@ class AddConfirmableToDevise < ActiveRecord::Migration
 
     add_index  :users, :confirmation_token, :unique => true
   end
+
   def self.down
     remove_index  :users, :confirmation_token
 

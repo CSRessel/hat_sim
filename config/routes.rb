@@ -1,12 +1,5 @@
 HatSim::Application.routes.draw do
 
-  # For the posts paths
-  resources :posts
-  # For the chains paths
-  resources :chains
-  # For the subforums paths
-  resources :subforums
-
   # For ransack's search path
   resources :servers do
     collection do
