@@ -1,0 +1,32 @@
+<% provide :title, 'Teams' %>
+
+<h1>Your teams:</h1>
+<% if @teams.empty? %>
+  <div>
+    You are not a regular member on any teams.
+  </div>
+<% else %>
+  <%= render @teams %>
+<% end %>
+
+<h1>Captained teams:</h1>
+<% if @captained_teams.empty? %>
+  <div>
+    You are not captain of any teams.
+  </div>
+<% else %>
+  <% @captained_teams.each do |captained_team| %>
+    <%= render "teams/captained_teams", :captained_team => captained_team %>
+  <% end %>
+<% end %>
+
+<h1>Team invitations:</h1>
+<% if @invitations.empty? %>
+  <div>
+    You do not have any pending invitations.
+  </div>
+<% else %>
+  <% @invitaitons.each do |invitation| %>
+    <%= render "teams/invitations", :invitation => invitation %>
+  <% end %>
+<% end %>

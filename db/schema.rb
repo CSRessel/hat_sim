@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20140217015959) do
   create_table "teams", force: true do |t|
     t.string   "name",                               null: false
     t.string   "game",       default: "unspecified", null: false
+    t.integer  "captain",                            null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -95,6 +96,8 @@ ActiveRecord::Schema.define(version: 20140217015959) do
 
   create_table "user_teams", force: true do |t|
     t.string   "role"
+    t.boolean  "accepted"
+    t.boolean  "ready"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id", null:false

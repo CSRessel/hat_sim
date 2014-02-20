@@ -1,5 +1,8 @@
 HatSim::Application.routes.draw do
 
+  # For the team url's
+  resources :teams
+
   # For ransack's search path
   resources :servers do
     collection do

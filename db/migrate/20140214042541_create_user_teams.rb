@@ -6,6 +6,9 @@ class CreateUserTeams < ActiveRecord::Migration
       t.integer :user_id, null:false
       t.integer :team_id, null:false
 
+      t.boolean :accepted
+      t.boolean :ready
+
       t.timestamps
     end
   end
