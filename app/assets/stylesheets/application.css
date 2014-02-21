@@ -14,7 +14,33 @@
  *= require_tree .
  */
 
-table,td {
+div#emergency_button_formatting {
+  padding-top: 2%;
+  padding-right: 5%;
+  text-align: right;
+}
+/*NOTE: I personally like it being 5% off in the above code, but I can see how that could be irritating.*/
+
+div#server_show_table table, div#server_show_table table tr, div#server_show_table table tr td {
+  border-style: none;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+div#server_show_table table tr td:first-of-type {
+  text-align: right;
+  font-size: 2em;
+}
+
+div#server_show_table table tr {
+  background-color: #E8E8E8;
+}
+
+div#server_show_table table tr:nth-child(even) {
+  background-color: #F0F0F0;
+}
+
+table,tr {
   border-bottom: 1px solid #B0B0B0;
 }
 
@@ -38,15 +64,15 @@ h1.exception_of_doom2 {
 }
 
 
-div#potato input, div#potato select {
+div#potato input, div#potato select, div#emergency_button_formatting * {
   background-color: #E8E8E8;
 }
 
-div#potato input:hover, div#potato select:hover {
+div#potato input:hover, div#potato select:hover, div#emergency_button_formatting *:hover {
   background-color: #F0F0F0;
 }
 
-div#potato input:focus, div#potato select:focus {
+div#potato input:focus, div#potato select:focus, div#emergency_button_formatting *:focus {
   background-color: white;
 }
 

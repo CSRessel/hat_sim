@@ -1,13 +1,82 @@
 <% provide :title, "Server #{@server.name}" %>
 
 <h1><%= @server.name %></h1>
-<div>Address: <%= @server.address %></div>
-<div>Password: <%= @server.password %></div>
-<div>Region: <%= @server.region %></div>
-<div>Players: <%= @server.players %>/<%= @server.maxplayers %></div>
-<div>Map: <%= @server.map %></div>
-<div>Dedicated: <%= @server.dedicated %></div>
-<% if @server.is_dedicated? %>
-<div>Gamemode: <%= @server.game %></div>
-<% end %>
-<div><%= link_to 'back', servers_path %> | <a href="steam://connect/<%= @server.address %>/<%= @server.password %>">join</a></div>
+<div class="row">
+  <div class="span5" id="server_show_table">
+    <table width="100%">
+      <tr>
+	<td width="25%">
+	  Address:
+	</td>
+	<td>
+	  <%= @server.address %>
+	</td>
+      </tr>
+      
+      <tr>
+	<td>
+	  Password:
+	</td>
+	<td>
+	  <%= @server.password %>
+	</td>
+      </tr>
+      
+      <tr>
+	<td>
+	  Region:
+	</td>
+	<td>
+	  <%= @server.region %>
+	</td>
+      </tr>
+      
+      <tr>
+	<td>
+	  Players:
+	</td>
+	<td>
+	  <%= @server.players %>/<%= @server.maxplayers %>
+	</td>
+      </tr>
+      
+      <tr>
+	<td>
+	  Map:
+	</td>
+	<td>
+	  <%= @server.map %>
+	</td>
+      </tr>
+      
+      <tr>
+	<td>
+	  Dedicated:
+	</td>
+	<td>
+	  <%= @server.dedicated %>
+	</td>
+      </tr>
+      
+      <% if @server.is_dedicated? %>
+      
+      <tr>
+	<td>
+	  Gamemode:
+	</td>
+	<td>
+	  <%= @server.game %>
+	</td>
+      </tr>
+      
+      <% end %>
+    </table>
+
+    <div id="emergency_button_formatting"><%= link_to 'back', servers_path, {class: "btn btn-link"} %>  <a href="steam://connect/<%= @server.address %>/<%= @server.password %>" class="btn btn-link">join</a></div>
+  </div>
+  <div class="span6 offset1">
+    <h4>Flags</h4>
+    <!--TODO: Implement flag displaying system.-->
+    
+  </div>
+</div>
