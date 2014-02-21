@@ -4,7 +4,7 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
-    6.times do
+    1.times do
       user_team = @team.user_teams.build
     end
   end
