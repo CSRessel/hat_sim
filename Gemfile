@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 ruby '2.1.0'
 #ruby-gemset=railstutorial_rails_4_0
 
+#Hello
+
 gem 'rails', '4.0.2'
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'bcrypt-ruby', '3.1.2'
