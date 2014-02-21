@@ -30,11 +30,13 @@ tr#this_is_probably_a_server:hover {
 }
 
 h1.exception_of_doom {
-  font-size: 3em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
   text-align: left;
 }
+
+h1.exception_of_doom2 {
+  text-align: right;
+}
+
 
 div#potato input, div#potato select {
   background-color: #E8E8E8;
@@ -48,9 +50,17 @@ div#potato input:focus, div#potato select:focus {
   background-color: white;
 }
 
-/*
 div.fields_are_small_as_crap input {
-  background-color: lightgray;
-  width: "2";
+  width: 20pt;
+}
+
+form div {
+  padding-top: 4pt;
+}
+
+/*
+div.fields_are_small_as_crap {
+  background-color: orange;
+  width: "50pt";
 }
 */

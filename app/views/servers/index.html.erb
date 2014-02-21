@@ -3,9 +3,9 @@
 <%# TODO: figure out how to make seperate search page %>
 <%# TODO: have form "remember" previous search %>
 <div class="row">
-  <div class="span4" id="potato">
+  <div class="span5" id="potato">
     <h1 class="exception_of_doom">Search!</h1>
-    <%= search_form_for @search, url: search_servers_path, html: { method: :post } do |f| %>
+    <%= search_form_for @search, url: search_servers_path, html: { method: :post, class: "form-inline" } do |f| %>
     <div>
       <%= f.label :name_cont %>
       <%= f.text_field :name_cont %>
@@ -20,13 +20,13 @@
       <%= f.label :players_lteq, "and" %>
       <%= f.text_field :players_lteq %>
     </div>
-    <div>
-      <%= f.label :maxplayers_gteq, "Max number of players between" %>
+    <div class="fields_are_small_as_crap">
+      <%= f.label :maxplayers_gteq, "Maximum players between" %>
       <%= f.text_field :maxplayers_gteq %>
       <%= f.label :maxplayers_lteq, "and" %>
       <%= f.text_field :maxplayers_lteq %>
     </div>
-    <div>
+    <div class="fields_are_small_as_crap">
       <%= f.label :free_spots_gteq, "Number of free spots between" %>
       <%= f.text_field :free_spots_gteq %>
       <%= f.label :free_spots_lteq, "and" %>
@@ -45,12 +45,13 @@
       Region (by timezone): <%= f.select :region_eq, options_for_select(%w[  EST CST MST PST]), :include_blank=>"timezone" %>
     </div>
     <div>
-      <%= f.submit "search" %>
+      <%= f.submit "search", {class: "btn btn-link"} %>
+      <!--TODO: Pick how we want this button to look. Default, primary, link all look good. Success and info also aren't too shabby.-->
     </div>
     <% end %>
   </div>
-  <div class="span8">
-    <h1>Servers!</h1>
+  <div class="span7">
+    <h1 class="exception_of_doom2">Servers!</h1>
     
     <%# What Railscasts recommends: (not sure why no partials, but they know better) %>
     <% if @servers.empty? %>
