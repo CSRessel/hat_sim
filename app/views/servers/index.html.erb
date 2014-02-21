@@ -7,11 +7,11 @@
     <h1 class="exception_of_doom">Search!</h1>
     <%= search_form_for @search, url: search_servers_path, html: { method: :post, class: "form-inline" } do |f| %>
     <div>
-      <%= f.label :name_cont %>
+      <%= f.label :name_cont, "Name of server contains:" %>
       <%= f.text_field :name_cont %>
     </div>
     <div>
-      <%= f.label :map_cont %>
+      <%= f.label :map_cont, "Map name contains:" %>
       <%= f.text_field :map_cont %>
     </div>
     <div class="fields_are_small_as_crap">
@@ -39,11 +39,13 @@
       Only noncompetitive servers? <%= f.check_box :dedicated_false %>
     </div>
     <div>
-      Game type: <%= f.select :game_eq, options_for_select(%w[  unspecified highlander 6v6]), :include_blank=>"game mode" %>
+      Game type: <%= f.select :game_eq, options_for_select(%w[ unspecified highlander 6v6]), :include_blank=>"game mode" %>
     </div>
     <div>
-      Region (by timezone): <%= f.select :region_eq, options_for_select(%w[  EST CST MST PST]), :include_blank=>"timezone" %>
+      Region (by timezone): <%= f.select :region_eq, options_for_select(%w[ EST CST MST PST]), :include_blank=>"timezone" %>
     </div>
+    <br />
+    <br />
     <div>
       <%= f.submit "search", {class: "btn btn-link"} %>
     </div>
