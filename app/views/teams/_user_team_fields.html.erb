@@ -1,0 +1,7 @@
+<p>
+  <%= f.label :user_id %>
+  <%= f.text_field :user_id %>
+  <%= f.link_to_remove "remove" %>
+  <%= f.label :role %>
+  <%= f.select :role, options_for_select(%w[scout roamingSoldier pocketSoldier pyro demoman heavy engineer medic sniper spy]) %>
+</p>

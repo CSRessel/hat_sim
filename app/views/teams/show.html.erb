@@ -11,3 +11,5 @@
 <% @unconfirmed_users.each do |unconfirmed_user| %>
   <%= render 'teams/unconfirmed_users', :unconfirmed_user => unconfirmed_user %>
 <% end %>
+
+<p><%= link_to "Back to teams", teams_path %></p>

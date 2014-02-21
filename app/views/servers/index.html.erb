@@ -72,7 +72,7 @@
       <td><%= server.dedicated %></td>
       <td><%= server.game %></td>
       <% if current_user.try(:admin?) %>
-        <td><%= link_to 'delete', server, :method=>:delete %></td>
+        <td><%= link_to 'delete', server, :confirm => 'Are you sure?', :method=>:delete %></td>
       <% end %>
     </tr>
   <% end %>

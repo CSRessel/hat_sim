@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
 
-  has_many :user_teams
+  has_many :user_teams, :dependent => :destroy
   has_many :teams, through: :user_teams
+  has_many :reviews, :dependent => :destroy
 
-  has_one :stat
+  has_one :stat, :dependent => :destroy
 
   belongs_to :server
 
@@ -27,5 +28,9 @@ class User < ActiveRecord::Base
   validates :steam_link, presence: true, uniqueness: { case_sensitive: false }
 
   validates :region, inclusion: { in: %w(EST CST MST PST) }
+
+
+  scope :is_member_of, -> (t){ joins(:user_teams).where('user_teams.accepted=?', 'true').where('user_teams.team_id=?', 't.id') }
+  scope :is_invited_to, -> (t){ joins(:user_teams).where('user_teams.accepted=?', 'false').where('user_teams.team_id=?', 't.id') }
 
 end
