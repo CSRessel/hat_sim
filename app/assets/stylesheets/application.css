@@ -1,3 +1,5 @@
+/*THIS FILE ISN'T BOOTSTRAP RELATED JUNK.*/
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -11,3 +13,44 @@
  *= require_self
  *= require_tree .
  */
+
+table,td {
+  border-bottom: 1px solid #B0B0B0;
+}
+
+td,th {
+  padding-left:7px;
+  padding-right:7px;
+  padding-top:3px;
+  padding-bottom:3px;
+}
+
+tr#this_is_probably_a_server:hover {
+  background-color: #F0F0F0;
+}
+
+h1.exception_of_doom {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: left;
+}
+
+div#potato input, div#potato select {
+  background-color: #E8E8E8;
+}
+
+div#potato input:hover, div#potato select:hover {
+  background-color: #F0F0F0;
+}
+
+div#potato input:focus, div#potato select:focus {
+  background-color: white;
+}
+
+/*
+div.fields_are_small_as_crap input {
+  background-color: lightgray;
+  width: "2";
+}
+*/
