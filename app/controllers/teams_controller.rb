@@ -1,11 +1,12 @@
-# TODO TODO TODO: this whole controller and its views
-
 class TeamsController < ApplicationController
 
   before_filter :authenticate_user!
 
   def new
     @team = Team.new
+    6.times do
+      user_team = @team.user_teams.build
+    end
   end
 
   def create
@@ -20,15 +21,15 @@ class TeamsController < ApplicationController
   end
 
   def index
-    @captained_teams = current_user.teams.references( :accepted ).where(accepted: { active: true }).where( :captain => current_user.id )
-    @teams = current_user.teams.references( :accepted ).where(accepted: { active: true }).where( "captain != ?", current_user.id )
-    @invitations = current_user.teams.references( :accepted ).where(accepted: { active: false })
+    @captained_teams = Team.captained_by(current_user)
+    @teams = Team. accepted_by(current_user)
+    @invitations = Team.pending_action_from(current_user)
   end
 
   def show
     @team = Team.find(params[:id])
-    @confirmed_users = team.users.references( :accepted ).where(accepted: { active: true })
-    @unconfirmed_users = team.users.references( :accepted ).where(accepted: { active: false })
+    @confirmed_users = User.is_member_of(@team)
+    @unconfirmed_users = User.is_invited_to(@team)
   end
 
   def destroy
@@ -43,7 +44,8 @@ class TeamsController < ApplicationController
 
   private
 
-  def teams_params
+  def team_params
+    params.require(:team).permit(:name, :game, user_teams_attributes: [:id, :user_id, :role, :_destroy])
   end
 
 end

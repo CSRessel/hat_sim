@@ -46,13 +46,12 @@
     </div>
     <div>
       <%= f.submit "search", {class: "btn btn-link"} %>
-      <!--TODO: Pick how we want this button to look. Default, primary, link all look good. Success and info also aren't too shabby.-->
     </div>
     <% end %>
   </div>
   <div class="span7">
     <h1 class="exception_of_doom2">Servers!</h1>
-    
+
     <%# What Railscasts recommends: (not sure why no partials, but they know better) %>
     <% if @servers.empty? %>
     <div>
@@ -61,23 +60,23 @@
     <% else %>
     <table id="servers" width="100%">
       <tr>
-	<th><%= sort_link @search, :name, "Server Name" %></th>
-	<th><%= sort_link @search, :region, "Region" %></th>
-	<th><%= sort_link @search, :dedicated, "Competitive?" %></th>
-	<th><%= sort_link @search, :game, "Game mode" %></th>
-	<% if current_user.try(:admin?) %>
-	<th>Delete server:</th>
-	<% end %>
+	      <th><%= sort_link @search, :name, "Server Name" %></th>
+	      <th><%= sort_link @search, :region, "Region" %></th>
+	      <th><%= sort_link @search, :dedicated, "Competitive?" %></th>
+	      <th><%= sort_link @search, :game, "Game mode" %></th>
+	      <% if current_user.try(:admin?) %>
+	        <th>Delete server:</th>
+	      <% end %>
       </tr>
       <% @servers.each do |server| %>
       <tr id="this_is_probably_a_server">
-	<td><%= link_to server.name, server %></td>
-	<td><%= server.region %></td>
-	<td><%= server.dedicated %></td>
-	<td><%= server.game %></td>
-	<% if current_user.try(:admin?) %>
-	<td><%= link_to 'delete', server, :method=>:delete %></td>
-	<% end %>
+	      <td><%= link_to server.name, server %></td>
+	      <td><%= server.region %></td>
+	      <td><%= server.dedicated %></td>
+	      <td><%= server.game %></td>
+	      <% if current_user.try(:admin?) %>
+	        <td><%= link_to 'delete', server, :method=>:delete %></td>
+	      <% end %>
       </tr>
       <% end %>
     </table>

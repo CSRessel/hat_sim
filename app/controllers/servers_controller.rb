@@ -14,19 +14,19 @@ class ServersController < ApplicationController
 
   # TODO: fix password confirmation error
   def create
-    #if server_params[:password] == server_params[:password_confirmation]
-      #@server = Server.new(remove_passwd_conf)
-      @server = Server.new(server_params)
+    @server = Server.new(remove_passwd_conf)
+    if server_params[:password] == server_params[:password_confirmation]
       if @server.save
         flash[:success] = 'Server created!'
         redirect_to servers_path
       else
         render 'new'
       end
-    #else
+    else
       #flash[:error] = 'Passwords must match'
-      #render 'new'
-    #end
+      @server.errors[:password_confirmation] = 'must match password'
+      render 'new'
+    end
   end
 
   def show
@@ -46,14 +46,14 @@ class ServersController < ApplicationController
   private
 
   def server_params
-    #params.require(:server).permit(:address, :name, :password, :password_confirmation, :tags, :region, :dedicated, :game)
-    params.require(:server).permit(:address, :name, :password, :tags, :region, :dedicated, :game)
+    params.require(:server).permit(:address, :name, :password, :password_confirmation, :tags, :region, :dedicated, :game)
+    #params.require(:server).permit(:address, :name, :password, :tags, :region, :dedicated, :game)
   end
 
-  #def remove_passwd_conf
-    #tmp_params = server_params
-    #tmp_params.delete :password_confirmation
-    #return tmp_params
-  #end
+  def remove_passwd_conf
+    tmp_params = server_params
+    tmp_params.delete :password_confirmation
+    return tmp_params
+  end
 
 end

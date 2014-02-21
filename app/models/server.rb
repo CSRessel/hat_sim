@@ -1,7 +1,7 @@
 class Server < ActiveRecord::Base
 
   has_many :users
-  has_many :reviews
+  has_many :reviews, :dependent => :destroy
 
   VALID_SERVER_ADDRESS = /\A\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}\z/
   validates :address, presence: true, format: { with: VALID_SERVER_ADDRESS }, uniqueness: true

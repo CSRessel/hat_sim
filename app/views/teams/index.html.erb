@@ -1,32 +1,59 @@
 <% provide :title, 'Teams' %>
 
-<h1>Your teams:</h1>
-<% if @teams.empty? %>
-  <div>
-    You are not a regular member on any teams.
-  </div>
-<% else %>
-  <%= render @teams %>
-<% end %>
+<div>
+  <p><%= link_to "Create new team", new_team_path %></p>
+</div>
 
-<h1>Captained teams:</h1>
-<% if @captained_teams.empty? %>
-  <div>
-    You are not captain of any teams.
-  </div>
-<% else %>
-  <% @captained_teams.each do |captained_team| %>
-    <%= render "teams/captained_teams", :captained_team => captained_team %>
+<table>
+  <tr>
+    <th>Your teams:</th>
+  </tr>
+  <% if @teams.empty? %>
+    <td>You are not a regular member on any teams.</td>
+  <% else %>
+    <% for team in @teams %>
+      <tr>
+        <td><%= link_to team.name, team_path(team) %></td>
+        <td><%= team.game %></td>
+        <% if current_user.try(:admin?) %>
+          <td><%= link_to "Destroy", team, :confirm => 'Are you sure?', :method => :delete %></td>
+        <% end %>
+      </tr>
+    <% end %>
   <% end %>
-<% end %>
-
-<h1>Team invitations:</h1>
-<% if @invitations.empty? %>
-  <div>
-    You do not have any pending invitations.
-  </div>
-<% else %>
-  <% @invitaitons.each do |invitation| %>
-    <%= render "teams/invitations", :invitation => invitation %>
+</table>
+<br />
+<table>
+  <tr>
+    <th>Captained teams:</th>
+  </tr>
+  <% if @captained_teams.empty? %>
+    <td>You are not a captain of any teams.</td>
+  <% else %>
+    <% for team in @captained_teams %>
+      <tr>
+        <td><%= link_to team.name, team_path(team) %></td>
+        <td><%= team.game %></td>
+        <td><%= link_to "Destroy", team, :confirm => 'Are you sure?', :method => :delete %></td>
+      </tr>
+    <% end %>
   <% end %>
-<% end %>
+</table>
+<br />
+<table>
+  <tr>
+    <th>Team invitations:</th>
+  </tr>
+  <% if @invitations.empty? %>
+    <td>You have no pending invitations.</td>
+  <% else %>
+    <% for team in @invitations %>
+      <tr>
+        <td><%= link_to team.name, team_path(team) %></td>
+        <td><%= team.game %></td>
+        <td><%= link_to "Accept", join_team %></td>
+        <%# TODO: create join_team link %>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
