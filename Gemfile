@@ -14,11 +14,12 @@ gem "devise", "~> 3.2.2"
 gem "ransack", "~> 1.1.0"
 gem "nested_form", "~> 0.3.2"
 gem "mailcatcher"
-gem "RubyInline", "~> 3.12.2"
+gem "steam-condenser", "~> 1.3.8.1"
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '2.13.1'
+  gem 'debugger'
   # The following optional lines are part of the advanced setup.
   # gem 'guard-rspec', '2.5.0'
   # gem 'spork-rails', '4.0.0'

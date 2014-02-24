@@ -5,7 +5,7 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
-    users_team = @team.users_teams.build(user_id: current_user.id, accepted: "true")
+    users_team = @team.users_teams.build(user_id: current_user.id, accepted: true)
     1.times do
       users_team = @team.users_teams.build
       users_team.accepted = false
@@ -65,7 +65,7 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, :game, users_teams_attributes: [:id, :user_id, :role, :_destroy])
+    params.require(:team).permit(:name, :game, users_teams_attributes: [:id, :user_id, :team_id, :role, :_destroy])
   end
 
 end
