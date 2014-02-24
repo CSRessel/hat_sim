@@ -5,8 +5,10 @@ class TeamsController < ApplicationController
 
   def new
     @team = Team.new
+    users_team = @team.users_teams.build(user_id: current_user.id, accepted: "true")
     1.times do
       users_team = @team.users_teams.build
+      users_team.accepted = false
     end
   end
 

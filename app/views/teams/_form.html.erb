@@ -19,8 +19,9 @@
     <%= f.select :game, options_for_select(%w[highlander 6v6 unspecified]), :include_blank=>"game mode" %>
   </p>
   <p>
-    Make sure to add yourself to the member list.
+    The first user below is yourself.
   </p>
+  <p>----------------------------------------------------------------</p>
   <%= f.fields_for :users_teams %>
   <p><%= f.link_to_add "Add a member slot", :users_teams %></p>
   <p><%= f.submit "Submit" %></p>

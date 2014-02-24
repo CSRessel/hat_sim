@@ -43,14 +43,14 @@ User.create!(username: 'mr_palfrey', email: 'mr_palfrey82@valvesoftware.net', st
 
 team = Team.new(name: "Prop hunt pros", game: "unspecified", captain: "1")
 team.users_teams.build(role: "scout", user_id: "1", accepted: "true")
-team.users_teams.build(role: "pyro", user_id: "2")
-team.users_teams.build(role: "scout", user_id: "4")
-team.users_teams.build(role: "pyro", user_id: "3")
+team.users_teams.build(role: "pyro", user_id: "2", accepted: "false")
+team.users_teams.build(role: "scout", user_id: "4", accepted: "false")
+team.users_teams.build(role: "pyro", user_id: "3", accepted: "false")
 team.save
 
 team = Team.new(name: "all spai 6v6 team", game: "6v6", captain: "2")
 team.users_teams.build(role: "spy", user_id: "2", accepted: "true")
-team.users_teams.build(role: "spy", user_id: "1")
-team.users_teams.build(role: "spy", user_id: "3")
-team.users_teams.build(role: "spy", user_id: "5")
+team.users_teams.build(role: "spy", user_id: "1", accepted: "false")
+team.users_teams.build(role: "spy", user_id: "3", accepted: "false")
+team.users_teams.build(role: "spy", user_id: "5", accepted: "false")
 team.save

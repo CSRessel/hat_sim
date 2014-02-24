@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   validates :region, inclusion: { in: %w(EST CST MST PST) }
 
 
-  scope :is_member_of, -> (t){ joins(:users_teams).where('users_teams.accepted=?', true).where('users_teams.team_id=?', t.id) }
-  scope :is_invited_to, -> (t){ joins(:users_teams).where('users_teams.accepted=?', false).where('users_teams.team_id=?', t.id) }
+  scope :is_member_of, -> (t){ joins(:users_teams).where('users_teams.accepted=?', true).where('users_teams.team_id=?', t.id).uniq }
+  scope :is_invited_to, -> (t){ joins(:users_teams).where('users_teams.accepted=?', false).where('users_teams.team_id=?', t.id).uniq }
 
 end
