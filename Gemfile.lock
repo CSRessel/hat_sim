@@ -7,6 +7,9 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    RubyInline (3.12.2)
+      ZenTest (~> 4.3)
+    ZenTest (4.9.5)
     actionmailer (4.0.2)
       actionpack (= 4.0.2)
       mail (~> 2.5.4)
@@ -224,6 +227,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  RubyInline (~> 3.12.2)
   bcrypt-ruby (= 3.1.2)
   bootstrap-sass (= 2.3.2.0)
   bootstrap-will_paginate (= 0.0.9)
