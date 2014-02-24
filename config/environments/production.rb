@@ -78,20 +78,19 @@ HatSim::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  # For devise:
-  # TODO: set up email sending with actual account
-  # set ENV variables in root project directory, in file ".env"
-  # load ENV according to this: http://stevechristie.tumblr.com/post/35158776548/how-to-set-up-local-environmental-variables
-  #config.action_mailer.default_url_options = { :host => "http://www.yourdomain.com" }
 
-  #config.action_mailer.delivery_method = :smtp
-  #config.action_mailer.smtp_settings = {
-  #address: "smtp.gmail.com",
-  #port: 587,
-  #domain: ENV["GMAIL_DOMAIN"],
-  #authentication: "plain",
-  #enable_starttls_auto: true,
-  #user_name: ENV["GMAIL_USERNAME"],
-  #password: ENV["GMAIL_PASSWORD"]
-  #}
+  # Devise email config
+  #--------------------
+  config.aciton_mail.delivery_method = :smtp
+  config.aciton_mail.smtp_settings = {
+    :enable_starttls_auto => true,
+    :address => "smtp.gmail.com",
+    :port => 587,
+    :authentication => :login,
+    # TODO: switch to using ENV variables for username and password
+    :user_name => "hat.sim.help@gmail.com",
+    :password => "spyisbestclass"
+  }
+  #--------------------
+
 end

@@ -11,7 +11,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   # TODO: finalize email "from" parameter
-  config.mailer_sender = 'confirm@hat_sim.com'
+  config.mailer_sender = 'NO-REPLY@hatsimhelp.com'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'

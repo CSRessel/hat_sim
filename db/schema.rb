@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "server_id", null:false
-    t.integer  "user_id",   null:false
+    t.integer  "server_id",             null: false
+    t.integer  "user_id",               null: false
   end
 
   create_table "servers", force: true do |t|
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.string   "most_successful_class"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id", null:false
+    t.integer  "user_id",               null: false
   end
 
   create_table "teams", force: true do |t|
@@ -100,8 +100,8 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.boolean  "ready"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id", null:false
-    t.integer  "team_id", null:false
+    t.integer  "user_id",    null: false
+    t.integer  "team_id",    null: false
   end
 
   create_table "users", force: true do |t|

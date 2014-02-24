@@ -27,20 +27,22 @@ HatSim::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-  # For devise:
-  # TODO: set up email sending with actual account
-  # set ENV variables in root project directory, in file ".env"
-  # load ENV according to this: http://stevechristie.tumblr.com/post/35158776548/how-to-set-up-local-environmental-variables
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
+  # Devise email config
+  #--------------------
+  config.action_mailer.perform_deliveries = false
+
+  # Comment below to run db:reset, uncomment below to test mail in dev mode
+
+  #config.action_mailer.raise_delivery_errors = true
   #config.action_mailer.delivery_method = :smtp
+
+  ## Delivers to local mailserver on port 1025
+  ## Run "mailcatcher" in shell to start an intercepting mail server available at "localhost:1080"
   #config.action_mailer.smtp_settings = {
-  #address: "smtp.gmail.com",
-  #port: 587,
-  #domain: ENV["GMAIL_DOMAIN"],
-  #authentication: "plain",
-  #enable_starttls_auto: true,
-  #user_name: ENV["GMAIL_USERNAME"],
-  #password: ENV["GMAIL_PASSWORD"]
+    #:address => "localhost",
+    #:port => 1025
   #}
+  #--------------------
+
 end
