@@ -6,7 +6,7 @@ class TeamsController < ApplicationController
   def new
     @team = Team.new
     1.times do
-      user_team = @team.user_teams.build
+      users_team = @team.users_teams.build
     end
   end
 
@@ -22,9 +22,9 @@ class TeamsController < ApplicationController
   end
 
   def index
-    @captained_teams = Team.captained_by(current_user)
-    @teams = Team. accepted_by(current_user)
-    @invitations = Team.pending_action_from(current_user)
+    @captained_teams = Team.has_captain(current_user)
+    @teams = Team.has_member(current_user)
+    @invitations = Team.has_invited(current_user)
   end
 
   def show
@@ -63,7 +63,7 @@ class TeamsController < ApplicationController
   private
 
   def team_params
-    params.require(:team).permit(:name, :game, user_teams_attributes: [:id, :user_id, :role, :_destroy])
+    params.require(:team).permit(:name, :game, users_teams_attributes: [:id, :user_id, :role, :_destroy])
   end
 
 end

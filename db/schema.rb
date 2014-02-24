@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 20140217015959) do
 
   add_index "teams", ["name"], name: "index_teams_on_name", unique: true
 
-  create_table "user_teams", force: true do |t|
+  create_table "users_teams", force: true do |t|
     t.string   "role"
     t.boolean  "accepted"
     t.boolean  "ready"

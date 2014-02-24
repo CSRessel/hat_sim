@@ -24,9 +24,9 @@
   <%= form.text_field :tags %></div>
   <div><%= form.label :dedicated, "Competitive server?" %><br />
   <%= form.check_box :dedicated %></div>
-  <div><%= form.label :region, "Region (by timezone)"%><br />
-  <%= form.select :region, options_for_select(%w[EST CST MST PST]) %></div>
   <div><%= form.label :game, "Game mode:" %><br />
-  <%= form.select :game, options_for_select(%w[unspecified highlander 6v6]) %></div>
+  <%= form.select :game, options_for_select(%w[unspecified highlander 6v6]), :include_blank=>"game mode" %></div>
   <div><%= form.submit 'Add Server' %></div>
+  <div><%= form.label :region, "Region (by timezone)"%><br />
+    <%= form.select :region, options_for_select(%w[EST CST MST PST]), :include_blank=>"timezone" %></div>
 <% end %>

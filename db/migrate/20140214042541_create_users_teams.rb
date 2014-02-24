@@ -1,6 +1,6 @@
-class CreateUserTeams < ActiveRecord::Migration
+class CreateUsersTeams < ActiveRecord::Migration
   def change
-    create_table :user_teams do |t|
+    create_table :users_teams do |t|
       t.string :role
 
       t.integer :user_id, null:false

@@ -1,15 +1,23 @@
-<% provide :title, "Team #{ @team.name } %>
+<% provide :title, "Team #{ @team.name }" %>
 
 <h1>Team <%= @team.name %></h1>
 
-<h4>Team members:</h4>
-<% @confirmed_users.each do |confirmed_user| %>
-  <%= render 'teams/confirmed_users', :confirmed_user => confirmed_user %>
+<h2>Team members:</h2>
+<% if @confirmed_users.empty? %>
+  <p>No members on this team.</p>
+<% else %>
+  <% @confirmed_users.each do |confirmed_user| %>
+    <%= render 'confirmed_user', :confirmed_user => confirmed_user %>
+  <% end %>
 <% end %>
 
-<h4>Unconfirmed members</h4>
-<% @unconfirmed_users.each do |unconfirmed_user| %>
-  <%= render 'teams/unconfirmed_users', :unconfirmed_user => unconfirmed_user %>
+<h2>Unconfirmed members:</h2>
+<% if @unconfirmed_users.empty? %>
+  <p>No invited members.</p>
+<% else %>
+  <% @unconfirmed_users.each do |unconfirmed_user| %>
+    <%= render 'unconfirmed_user', :unconfirmed_user => unconfirmed_user %>
+  <% end %>
 <% end %>
 
 <p><%= link_to "Back to teams", teams_path %></p>

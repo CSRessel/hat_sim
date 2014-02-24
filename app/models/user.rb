@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
 
-  has_many :user_teams, :dependent => :destroy
-  has_many :teams, through: :user_teams
+  has_many :users_teams, :dependent => :destroy
+  has_many :teams, through: :users_teams
+
   has_many :reviews, :dependent => :destroy
 
   has_one :stat, :dependent => :destroy
@@ -30,7 +31,7 @@ class User < ActiveRecord::Base
   validates :region, inclusion: { in: %w(EST CST MST PST) }
 
 
-  scope :is_member_of, -> (t){ joins(:user_teams).where('user_teams.accepted=?', 'true').where('user_teams.team_id=?', 't.id') }
-  scope :is_invited_to, -> (t){ joins(:user_teams).where('user_teams.accepted=?', 'false').where('user_teams.team_id=?', 't.id') }
+  scope :is_member_of, -> (t){ joins(:users_teams).where('users_teams.accepted=?', true).where('users_teams.team_id=?', t.id) }
+  scope :is_invited_to, -> (t){ joins(:users_teams).where('users_teams.accepted=?', false).where('users_teams.team_id=?', t.id) }
 
 end

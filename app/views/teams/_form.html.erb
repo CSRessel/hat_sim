@@ -16,12 +16,12 @@
     <%= f.label :name, "Team name:"%><br />
     <%= f.text_field :name %>
     <%= f.label :game, "Game type:" %><br />
-    <%= f.select :game, options_for_select(%w[highlander 6v6]) %>
+    <%= f.select :game, options_for_select(%w[highlander 6v6 unspecified]), :include_blank=>"game mode" %>
   </p>
   <p>
     Make sure to add yourself to the member list.
   </p>
-  <%= f.fields_for :user_teams %>
-  <p><%= f.link_to_add "Add a member slot", :user_teams %></p>
+  <%= f.fields_for :users_teams %>
+  <p><%= f.link_to_add "Add a member slot", :users_teams %></p>
   <p><%= f.submit "Submit" %></p>
 <% end %>
