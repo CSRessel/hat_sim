@@ -30,6 +30,7 @@ HatSim::Application.configure do
 
   # Devise email config
   #--------------------
+  config.action_mailer.default_url_options = { :host => 'localhost;3000' }
   config.action_mailer.perform_deliveries = false
 
   #--------------------
