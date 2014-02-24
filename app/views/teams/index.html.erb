@@ -1,16 +1,23 @@
 <% provide :title, 'Teams' %>
 
 <div>
-  <p><%= link_to "Create new team", new_team_path %></p>
+  <h3><%= link_to "Create new team", new_team_path %></h3>
 </div>
 
-<table>
-  <tr>
-    <th>Your teams:</th>
-  </tr>
-  <% if @teams.empty? %>
-    <td>You are not a regular member on any teams.</td>
-  <% else %>
+<br />
+
+<h1 class="exception_of_doom">Your Teams:</h1>
+<% if @teams.empty? %>
+  <p>You are not a regular member on any teams.</p>
+<% else %>
+  <table>
+    <tr>
+      <th>Team Name</th>
+      <th>Game Mode</th>
+      <% if current_user.try(:admin?) %>
+        <th>Delete Team</th>
+      <% end %>
+    </tr>
     <% for team in @teams %>
       <tr>
         <td><%= link_to team.name, team_path(team) %></td>
@@ -20,16 +27,20 @@
         <% end %>
       </tr>
     <% end %>
-  <% end %>
-</table>
+  </table>
+<% end %>
 <br />
-<table>
-  <tr>
-    <th>Captained teams:</th>
-  </tr>
-  <% if @captained_teams.empty? %>
-    <td>You are not a captain of any teams.</td>
-  <% else %>
+
+<h1 class="exception_of_doom">Captained Teams:</h1>
+<% if @captained_teams.empty? %>
+  <p>You are not a captain of any teams.</p>
+<% else %>
+  <table>
+    <tr>
+      <th>Team Name</th>
+      <th>Game Mode</th>
+      <th>Delete Team</th>
+    </tr>
     <% for team in @captained_teams %>
       <tr>
         <td><%= link_to team.name, team_path(team) %></td>
@@ -37,23 +48,30 @@
         <td><%= link_to "Destroy", team, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
     <% end %>
-  <% end %>
-</table>
+  </table>
+<% end %>
 <br />
-<table>
-  <tr>
-    <th>Team invitations:</th>
-  </tr>
-  <% if @invitations.empty? %>
-    <td>You have no pending invitations.</td>
-  <% else %>
+
+<h1 class="exception_of_doom">Team Invitations:</h1>
+<% if @invitations.empty? %>
+  <p>You have no pending invitations.</p>
+<% else %>
+  <table>
+    <tr>
+      <th>Team Name</th>
+      <th>Game Mode</th>
+      <th>Accept</th>
+      <th>Decline</th>
+    </tr>
     <% for team in @invitations %>
       <tr>
         <td><%= link_to team.name, team_path(team) %></td>
         <td><%= team.game %></td>
         <td><%= link_to "Accept", join_team %></td>
+        <td><%= link_to "Decline", reject_team %></td>
         <!-- TODO: create join_team link -->
+        <!-- TODO: create reject_team link -->
       </tr>
     <% end %>
-  <% end %>
-</table>
+  </table>
+<% end %>

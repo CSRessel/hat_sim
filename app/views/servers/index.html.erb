@@ -65,9 +65,9 @@
 	      <th><%= sort_link @search, :name, "Server Name" %></th>
 	      <th><%= sort_link @search, :region, "Region" %></th>
 	      <th><%= sort_link @search, :dedicated, "Competitive?" %></th>
-	      <th><%= sort_link @search, :game, "Game mode" %></th>
+	      <th><%= sort_link @search, :game, "Game Mode" %></th>
 	      <% if current_user.try(:admin?) %>
-	        <th>Delete server:</th>
+	        <th>Delete Server</th>
 	      <% end %>
       </tr>
       <% @servers.each do |server| %>
