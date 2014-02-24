@@ -37,8 +37,3 @@ User.create!(username: 'admin2', email: 'tnemec@andover.edu', steam_link: 'somet
 User.create!(username: 'claire', email: 'claire73@gmail.com', steam_link: 'claire420', region: 'EST', admin: false, password: 'password');
 User.create!(username: 'heavy', email: 'heavy9@spam.com', steam_link: 'heavy420', region: 'CST', admin: false, password: 'password');
 User.create!(username: 'mr_palfrey', email: 'mr_palfrey82@valvesoftware.net', steam_link: 'mr_palfrey', region: 'PST', admin: false, password: 'password');
-
-
-# TEAMS
-
-Team.create!(name: "Prop Hunt Pros", game: "unspecified", captain: "1");
