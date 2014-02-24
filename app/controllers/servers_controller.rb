@@ -12,7 +12,6 @@ class ServersController < ApplicationController
     @server = Server.new
   end
 
-  # TODO: fix password confirmation error
   def create
     @server = Server.new(remove_passwd_conf)
     if server_params[:password] == server_params[:password_confirmation]
@@ -23,7 +22,6 @@ class ServersController < ApplicationController
         render 'new'
       end
     else
-      #flash[:error] = 'Passwords must match'
       @server.errors[:password_confirmation] = 'must match password'
       render 'new'
     end

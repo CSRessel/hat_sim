@@ -12,7 +12,7 @@
 	  <%= @server.address %>
 	</td>
       </tr>
-      
+
       <tr>
 	<td>
 	  Password:
@@ -21,7 +21,7 @@
 	  <%= @server.password %>
 	</td>
       </tr>
-      
+
       <tr>
 	<td>
 	  Region:
@@ -30,7 +30,7 @@
 	  <%= @server.region %>
 	</td>
       </tr>
-      
+
       <tr>
 	<td>
 	  Players:
@@ -39,7 +39,7 @@
 	  <%= @server.players %>/<%= @server.maxplayers %>
 	</td>
       </tr>
-      
+
       <tr>
 	<td>
 	  Map:
@@ -48,7 +48,7 @@
 	  <%= @server.map %>
 	</td>
       </tr>
-      
+
       <tr>
 	<td>
 	  Dedicated:
@@ -57,9 +57,9 @@
 	  <%= @server.dedicated %>
 	</td>
       </tr>
-      
+
       <% if @server.is_dedicated? %>
-      
+
       <tr>
 	<td>
 	  Gamemode:
@@ -68,7 +68,7 @@
 	  <%= @server.game %>
 	</td>
       </tr>
-      
+
       <% end %>
     </table>
 
@@ -77,6 +77,6 @@
   <div class="span6 offset1">
     <h4>Flags</h4>
     <!--TODO: Implement flag displaying system.-->
-    
+
   </div>
 </div>

@@ -32,6 +32,23 @@ class TeamsController < ApplicationController
     @unconfirmed_users = User.is_invited_to(@team)
   end
 
+  def edit
+    @team = Team.find(params[:id])
+  end
+
+  def update
+    @team = Team.find(params[:id])
+    if @team.update_attributes(team_params)
+      redirect_to @team, :notice  => "Successfully updated team."
+    else
+      render :action => 'edit'
+    end
+  end
+
+  def join_team
+    @team = Team.find(params[:id])
+  end
+
   def destroy
     @team = Team.find(params[:id])
     if Team.where(:id => params[:id]).captain == current_user.id || current_user.try(:admin?)
