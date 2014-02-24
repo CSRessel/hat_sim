@@ -32,8 +32,12 @@ HatSim::Application.configure do
   #--------------------
   config.action_mailer.perform_deliveries = false
 
-  # Comment below to run db:reset, uncomment below to test mail in dev mode
+  #--------------------
+  # Comment below to run db:reset, uncomment below and comment above to test mail in dev mode
+  #--------------------
 
+  ## TODO: finalize domain name
+  #config.action_mailer.default_url_options = { host: "localhost:3000" }
   #config.action_mailer.raise_delivery_errors = true
   #config.action_mailer.delivery_method = :smtp
 

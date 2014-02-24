@@ -81,6 +81,8 @@ HatSim::Application.configure do
 
   # Devise email config
   #--------------------
+  # TODO: finalize domain name
+  config.action_mailer.default_url_options = { host: "hatsimhelp.com" }
   config.aciton_mail.delivery_method = :smtp
   config.aciton_mail.smtp_settings = {
     :enable_starttls_auto => true,

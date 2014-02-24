@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+  # TODO: finish this controller
 
   before_filter :authenticate_user!
 
