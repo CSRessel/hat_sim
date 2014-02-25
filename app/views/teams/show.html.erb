@@ -2,6 +2,14 @@
 
 <h1>Team <%= @team.name %></h1>
 
+<% if current_user.id != @team.captain %>
+  <p><%= link_to "Leave this team (permanently)", reject_path(@team), :confirm => 'Are you sure?' %></p>
+<% end %>
+<% if current_user.id == @team.captain %>
+  <p><%= link_to "Edit this team", edit_team_path(@team) %></p>
+  <p><%= link_to "Delete this team (permanently)", @team, :confirm => 'Are you sure?', :method => :delete %></p>
+<% end %>
+
 <h3>Team members:</h3>
 <% if @confirmed_users.empty? %>
   <p>No members on this team.</p>
@@ -11,7 +19,7 @@
   <% end %>
 <% end %>
 
-<h3>Unconfirmed members:</h2>
+<h3>Unconfirmed members:</h3>
 <% if @unconfirmed_users.empty? %>
   <p>No invited members.</p>
 <% else %>
