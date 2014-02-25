@@ -2,7 +2,7 @@
 
 <h1>Team <%= @team.name %></h1>
 
-<h2>Team members:</h2>
+<h3>Team members:</h3>
 <% if @confirmed_users.empty? %>
   <p>No members on this team.</p>
 <% else %>
@@ -11,7 +11,7 @@
   <% end %>
 <% end %>
 
-<h2>Unconfirmed members:</h2>
+<h3>Unconfirmed members:</h2>
 <% if @unconfirmed_users.empty? %>
   <p>No invited members.</p>
 <% else %>
@@ -19,5 +19,7 @@
     <%= render 'unconfirmed_user', :unconfirmed_user => unconfirmed_user %>
   <% end %>
 <% end %>
+
+<br />
 
 <p><%= link_to "Back to teams", teams_path %></p>

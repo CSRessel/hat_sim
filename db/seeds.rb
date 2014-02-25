@@ -12,7 +12,7 @@ Server.create(name: 'Engineers RP Server - PST', address: '138.8.81.149:65', map
 Server.create(name: 'Super Fun Server - EST', address: '38.130.70.206:158', map: 'ph_hydro', password: 'pa55word1234', dedicated: 'false', game: 'unspecified', players: '8', maxplayers: '12', region: 'EST')
 Server.create(name: 'lowgrav100%crits RP Server - CST', address: '197.222.66.91:233', map: 'mvm_dustbowl', password: 'password1234', dedicated: 'false', game: 'unspecified', players: '6', maxplayers: '29', region: 'CST')
 Server.create(name: 'Carls Prophunt Server - CST', address: '168.231.125.193:123', map: 'ph_pipeline', password: 'pasphrase', dedicated: 'false', game: 'unspecified', players: '10', maxplayers: '22', region: 'CST')
-Server.create(name: 'Carls Prophunt Server - PST', address: '26.148.159.192:250', map: 'arena_idle', password: 'pasword', dedicated: 'false', game: 'unspecified', players: '24', maxplayers: '29', region: 'PST')
+Server.create(name: 'Carls Prophunt Server - PST', address: '26.148.159.192:250', map: 'arena_idle', password: 'passssword', dedicated: 'false', game: 'unspecified', players: '24', maxplayers: '29', region: 'PST')
 Server.create(name: 'lowgrav100%crits Prophunt Server - PST', address: '18.30.172.160:33', map: 'arena_de_dust', password: 'pessvort', dedicated: 'false', game: 'unspecified', players: '9', maxplayers: '12', region: 'PST')
 Server.create(name: 'Super Fun Server - PST', address: '99.71.29.81:179', map: 'plr_dustbowl', password: 'passwerd', dedicated: 'false', game: 'unspecified', players: '11', maxplayers: '11', region: 'PST')
 Server.create(name: 'Engineers Server - EST', address: '75.64.227.42:197', map: 'mvm_hightower', password: 'password1234', dedicated: 'true', game: 'highlander', players: '17', maxplayers: '18', region: 'EST')
@@ -23,7 +23,7 @@ Server.create(name: 'Carls Prophunt Server - MST', address: '24.165.234.185:183'
 Server.create(name: 'Super Fun Prophunt Server - MST', address: '233.7.37.171:89', map: 'achievement_hightower', password: 'pa55vort', dedicated: 'true', game: 'highlander', players: '17', maxplayers: '18', region: 'MST')
 Server.create(name: 'MLG Pro Only Server - PST', address: '96.32.105.199:254', map: 'cp_de_dust', password: 'pa55werd', dedicated: 'false', game: 'unspecified', players: '5', maxplayers: '10', region: 'PST')
 Server.create(name: '24/7 2fort Server - PST', address: '162.70.80.221:254', map: 'cp_de_dust', password: 'password', dedicated: 'true', game: 'highlander', players: '9', maxplayers: '18', region: 'PST')
-Server.create(name: 'MLG Pro Only RP Server - EST', address: '80.30.46.98:17', map: 'ctf_2fort', password: 'paswerd', dedicated: 'true', game: 'unspecified', players: '13', maxplayers: '26', region: 'EST')
+Server.create(name: 'MLG Pro Only RP Server - EST', address: '80.30.46.98:17', map: 'ctf_2fort', password: 'paswerdeee', dedicated: 'true', game: 'unspecified', players: '13', maxplayers: '26', region: 'EST')
 Server.create(name: 'MLG Pro Only Server - MST', address: '231.201.161.85:30', map: 'arena_steel', password: 'possvort', dedicated: 'false', game: 'unspecified', players: '14', maxplayers: '26', region: 'MST')
 Server.create(name: '24/7 2fort RP Server - CST', address: '251.5.248.28:31', map: 'arena_turbine', password: 'pasweird', dedicated: 'true', game: 'unspecified', players: '20', maxplayers: '24', region: 'CST')
 Server.create(name: 'Bobs Server - PST', address: '200.169.3.121:1', map: 'mvm_turbine', password: 'pessphrase', dedicated: 'false', game: 'unspecified', players: '5', maxplayers: '18', region: 'PST')
@@ -53,4 +53,10 @@ team.users_teams.build(role: "spy", user_id: "2", accepted: "true")
 team.users_teams.build(role: "spy", user_id: "1", accepted: "false")
 team.users_teams.build(role: "spy", user_id: "3", accepted: "false")
 team.users_teams.build(role: "spy", user_id: "5", accepted: "false")
+team.save
+
+team = Team.new(name: "super kewl pro gamers", game: "highlander", captain: "4")
+team.users_teams.build(role: "soldier", user_id: "4", accepted: "true")
+team.users_teams.build(role: "spy", user_id: "2", accepted: "true")
+team.users_teams.build(role: "medic", user_id: "1", accepted: "true")
 team.save

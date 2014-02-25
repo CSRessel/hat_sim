@@ -1,7 +1,10 @@
 class TeamsController < ApplicationController
-  # TODO: finish this controller
+  # TODO: finish testing authentication and finish captain's abilities
+  #                                                           (delete users mainly)
 
   before_filter :authenticate_user!
+  before_filter :require_captain_or_admin, only:[ :edit, :update, :destroy ]
+  before_filter :require_membership, only:[ :show, :join, :reject ]
 
   def new
     @team = Team.new
@@ -44,28 +47,57 @@ class TeamsController < ApplicationController
     if @team.update_attributes(team_params)
       redirect_to @team, :notice  => "Successfully updated team."
     else
-      render :action => 'edit'
+      render 'edit'
     end
   end
 
-  def join_team
+  def join
     @team = Team.find(params[:id])
+    @membership = UsersTeam.where(:team_id => @team.id).where(:user_id => current_user.id).first
+    @membership.accepted = true
+    if @membership.save
+      redirect_to @team, :notice  => "Successfully joined team."
+    else
+      redirect_to teams_path
+    end
+  end
+
+  def reject
+    @team = Team.find(params[:id])
+    @membership = UsersTeam.where(:team_id => @team.id).where(:user_id => current_user.id).first
+    @membership.destroy
+    redirect_to teams_path
   end
 
   def destroy
     @team = Team.find(params[:id])
-    if Team.where(:id => params[:id]).captain == current_user.id || current_user.try(:admin?)
+    if @team.captain == current_user.id || current_user.try(:admin?)
       @team.destroy
-      render 'index'
-    else
-      redirect_to teams_path
     end
+    redirect_to teams_path
   end
 
   private
 
   def team_params
     params.require(:team).permit(:name, :game, users_teams_attributes: [:id, :user_id, :team_id, :role, :_destroy])
+  end
+
+  def require_membership
+    @team = Team.find(params[:id])
+    @membership = UsersTeam.where(:team_id => @team.id).where(:user_id => current_user.id).first
+    if @membership.nil?
+      redirect_to root_path
+    end
+  end
+
+  def require_captain_or_admin
+    @team = Team.find(params[:id])
+    if current_user.id != @team.captain
+      if not current_user.try(:admin?)
+        redirect_to root_path
+      end
+    end
   end
 
 end
