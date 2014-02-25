@@ -1,6 +1,4 @@
 class TeamsController < ApplicationController
-  # TODO: finish testing authentication and finish captain's abilities
-  #                                                           (delete users mainly)
 
   before_filter :authenticate_user!
   before_filter :require_captain_or_admin, only:[ :edit, :update, :destroy ]
@@ -69,6 +67,10 @@ class TeamsController < ApplicationController
     redirect_to teams_path
   end
 
+  # TODO: kick_member method
+  def kick_member
+  end
+
   def destroy
     @team = Team.find(params[:id])
     if @team.captain == current_user.id || current_user.try(:admin?)
@@ -76,6 +78,8 @@ class TeamsController < ApplicationController
     end
     redirect_to teams_path
   end
+
+  # TODO: playing on server as team
 
   private
 
