@@ -4,6 +4,7 @@ class ServersController < ApplicationController
   before_filter :authenticate_user!, :except => [ :index, :search ]
 
   def index
+    update_all_servers
     @search = Server.search(params[:q])
     @servers = @search.result(distinct: true)
   end
@@ -28,6 +29,7 @@ class ServersController < ApplicationController
   end
 
   def show
+    update_server(params[:id])
     @server = Server.find(params[:id])
   end
 
@@ -52,6 +54,34 @@ class ServersController < ApplicationController
     tmp_params = server_params
     tmp_params.delete :password_confirmation
     return tmp_params
+  end
+
+  # Updatey stuff
+
+  def update_server(id)
+    @server = Server.find(id)
+    ip_address = IPAddr.new(@server.address[/[^:]*?/])
+    port = @server.address[/\d*$/]
+    server = TF2Server.new(ip_address,port)
+    @server.players = server.server_info[:number_of_players] - server.server_info[:number_of_bots]
+    # Now, I'm not 100% sure how this works. server.server_info[:number_of_bots] would return the number of bots. Should we subtract that from the number of players? Or does it do that by default?
+    # TODO: Figure out whether bots count
+    @server.maxplayers = server.server_info[:max_players]
+    @server.free_spots = @server.maxplayers - @server.players
+    @server.map = server.server_info[:map_name]
+    @server.name = server.server_info[:server_name]
+    @server.tags = server.server_info[:server_tags]
+    if not @server.save
+      flash[:error]="Server cannot be reached for comment"
+      redirect_to servers_index_path
+    end
+  end
+
+  def update_all_servers
+    @servers = Server.all
+    @server.each do |server|
+      update_server(server.id)
+    end
   end
 
 end
