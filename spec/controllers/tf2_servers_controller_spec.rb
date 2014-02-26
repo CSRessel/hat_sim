@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ServersController do
+describe Tf2ServersController do
 
   describe "GET 'index'" do
     it "returns http success" do

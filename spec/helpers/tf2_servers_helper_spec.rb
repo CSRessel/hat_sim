@@ -10,6 +10,6 @@ require 'spec_helper'
 #     end
 #   end
 # end
-describe ServersHelper do
+describe Tf2ServersHelper do
   pending "add some examples to (or delete) #{__FILE__}"
 end

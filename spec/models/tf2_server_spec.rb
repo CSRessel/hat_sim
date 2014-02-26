@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe "server/create.html.erb" do
+describe Tf2Server do
   pending "add some examples to (or delete) #{__FILE__}"
 end

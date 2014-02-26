@@ -1,5 +1,5 @@
 class AddIndexToServersAddress < ActiveRecord::Migration
   def change
-    add_index :servers, :address, unique: true
+    add_index :tf2_servers, :address, unique: true
   end
 end

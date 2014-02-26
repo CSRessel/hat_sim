@@ -1,6 +1,6 @@
 class CreateServers < ActiveRecord::Migration
   def change
-    create_table :servers do |t|
+    create_table :tf2_servers do |t|
       # Used in all servers
       t.string :address, null:false
       t.string :map

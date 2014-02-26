@@ -1,4 +1,4 @@
-class Server < ActiveRecord::Base
+class Tf2Server < ActiveRecord::Base
 
   has_many :users
   has_many :reviews, :dependent => :destroy

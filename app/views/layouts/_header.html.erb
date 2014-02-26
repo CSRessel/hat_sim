@@ -1,12 +1,12 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to 'Hat Simulator Helper', root_path, id: "logo" %> 
+      <%= link_to 'Hat Simulator Helper', root_path, id: "logo" %>
       <nav>
         <ul class="nav pull-right">
           <li><%= link_to "About", about_path %></li>
           <li><%= link_to "FAQ", faq_path %></li>
-	  <li><%= link_to "Servers", servers_path %></li>
+	  <li><%= link_to "Servers", tf2_servers_path %></li>
 	  <li><%= link_to "Teams", teams_path %></li>
 	  <% if signed_in? %>
 	    <li><%= link_to "My Account", edit_user_registration_path %></li>

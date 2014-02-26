@@ -22,11 +22,11 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "server_id",             null: false
+    t.integer  "tf2_server_id",             null: false
     t.integer  "user_id",               null: false
   end
 
-  create_table "servers", force: true do |t|
+  create_table "tf2_servers", force: true do |t|
     t.string   "address",                            null: false
     t.string   "map"
     t.string   "region"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.datetime "updated_at"
   end
 
-  add_index "servers", ["address"], name: "index_servers_on_address", unique: true
+  add_index "tf2_servers", ["address"], name: "index_tf2_servers_on_address", unique: true
 
   create_table "stats", force: true do |t|
     t.integer  "tot_hours"
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "server_id"
+    t.integer  "tf2_server_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

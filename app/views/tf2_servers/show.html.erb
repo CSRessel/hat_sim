@@ -1,6 +1,6 @@
-<% provide :title, "Server #{@server.name}" %>
+<% provide :title, "Server #{@tf2_server.name}" %>
 
-<h1><%= @server.name %></h1>
+<h1><%= @tf2_server.name %></h1>
 <div class="row">
   <div class="span5" id="server_show_table">
     <table width="100%">
@@ -9,7 +9,7 @@
 	  Address:
 	</td>
 	<td>
-	  <%= @server.address %>
+	  <%= @tf2_server.address %>
 	</td>
       </tr>
 
@@ -18,7 +18,7 @@
 	  Password:
 	</td>
 	<td>
-	  <%= @server.password %>
+	  <%= @tf2_server.password %>
 	</td>
       </tr>
 
@@ -27,7 +27,7 @@
 	  Region:
 	</td>
 	<td>
-	  <%= @server.region %>
+	  <%= @tf2_server.region %>
 	</td>
       </tr>
 
@@ -36,7 +36,7 @@
 	  Players:
 	</td>
 	<td>
-	  <%= @server.players %>/<%= @server.maxplayers %>
+	  <%= @tf2_server.players %>/<%= @tf2_server.maxplayers %>
 	</td>
       </tr>
 
@@ -45,7 +45,7 @@
 	  Map:
 	</td>
 	<td>
-	  <%= @server.map %>
+	  <%= @tf2_server.map %>
 	</td>
       </tr>
 
@@ -54,25 +54,25 @@
 	  Dedicated:
 	</td>
 	<td>
-	  <%= @server.dedicated %>
+	  <%= @tf2_server.dedicated %>
 	</td>
       </tr>
 
-      <% if @server.is_dedicated? %>
+      <% if @tf2_server.is_dedicated? %>
 
       <tr>
 	<td>
 	  Gamemode:
 	</td>
 	<td>
-	  <%= @server.game %>
+	  <%= @tf2_server.game %>
 	</td>
       </tr>
 
       <% end %>
     </table>
 
-    <div id="emergency_button_formatting"><%= link_to 'back', servers_path, {class: "btn btn-link"} %>  <a href="steam://connect/<%= @server.address %>/<%= @server.password %>" class="btn btn-link">join</a></div>
+    <div id="emergency_button_formatting"><%= link_to 'back', tf2_servers_path, {class: "btn btn-link"} %>  <a href="steam://connect/<%= @tf2_server.address %>/<%= @tf2_server.password %>" class="btn btn-link">join</a></div>
   </div>
   <div class="span6 offset1">
     <!-- Finish reviews/flags for servers -->

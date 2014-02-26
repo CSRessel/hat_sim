@@ -1,6 +1,6 @@
 class Review < ActiveRecord::Base
 
-  belongs_to :server
+  belongs_to :tf2_server
   belongs_to :user
 
   validates :rating_administration, numericality: { greater_than: 0, less_than: 11, only_integer: true }

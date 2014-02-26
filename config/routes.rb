@@ -6,14 +6,14 @@ HatSim::Application.routes.draw do
   get 'teams/:id/reject', to: 'teams#reject', as: 'reject'
 
   # For ransack's search path
-  resources :servers do
+  resources :tf2_servers do
     collection do
-      match 'search' => 'servers#search', via: [:get, :post], as: :search
+      match 'search' => 'tf2_servers#search', via: [:get, :post], as: :search
     end
   end
 
   # For the server paths
-  resources :servers
+  resources :tf2_servers
 
   # For devise routes:
   devise_for :users, :path => '', :path_names => { :sign_in => "signin", :sign_out => "signout", :sign_up => "register" }

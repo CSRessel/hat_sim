@@ -5,7 +5,7 @@
 <div class="row">
   <div class="span5" id="potato">
     <h1 class="exception_of_doom">Search!</h1>
-    <%= search_form_for @search, url: search_servers_path, html: { method: :post, class: "form-inline" } do |f| %>
+    <%= search_form_for @search, url: search_tf2_servers_path, html: { method: :post, class: "form-inline" } do |f| %>
     <div>
       <%= f.label :name_cont, "Name of server contains:" %>
       <%= f.text_field :name_cont %>
@@ -55,7 +55,7 @@
     <h1 class="exception_of_doom2">Servers!</h1>
 
     <%# What Railscasts recommends: (not sure why no partials, but they know better) %>
-    <% if @servers.empty? %>
+    <% if @tf2_servers.empty? %>
     <div>
       No servers found.
     </div>
@@ -70,14 +70,14 @@
 	        <th>Delete Server</th>
 	      <% end %>
       </tr>
-      <% @servers.each do |server| %>
+      <% @tf2_servers.each do |tf2_server| %>
       <tr id="this_is_probably_a_server">
-	      <td><%= link_to server.name, server %></td>
-	      <td><%= server.region %></td>
-	      <td><%= server.dedicated %></td>
-	      <td><%= server.game %></td>
+	      <td><%= link_to tf2_server.name, tf2_server %></td>
+	      <td><%= tf2_server.region %></td>
+	      <td><%= tf2_server.dedicated %></td>
+	      <td><%= tf2_server.game %></td>
 	      <% if current_user.try(:admin?) %>
-	        <td><%= link_to 'delete', server, :method=>:delete %></td>
+	        <td><%= link_to 'delete', tf2_server, :method=>:delete %></td>
 	      <% end %>
       </tr>
       <% end %>

@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   has_one :stat, :dependent => :destroy
 
-  belongs_to :server
+  belongs_to :tf2_server
 
 
   # Include default devise modules. Others available are:
