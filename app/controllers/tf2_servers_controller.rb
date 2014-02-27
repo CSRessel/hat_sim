@@ -4,7 +4,7 @@ class Tf2ServersController < ApplicationController
   before_filter :authenticate_user!, :except => [ :index, :search ]
 
   def index
-    update_all_tf2_servers
+    #update_all_tf2_servers
     @search = Tf2Server.search(params[:q])
     @tf2_servers = @search.result(distinct: true)
   end
@@ -29,7 +29,7 @@ class Tf2ServersController < ApplicationController
   end
 
   def show
-    update_tf2_server(params[:id])
+    #update_tf2_server(params[:id])
     @tf2_server = Tf2Server.find(params[:id])
   end
 
@@ -60,17 +60,18 @@ class Tf2ServersController < ApplicationController
 
   def update_tf2_server(id)
     @tf2_server = Tf2Server.find(id)
-    ip_address = IPAddr.new(@tf2_server.address[/[^:]*?/])
+
+    ip_address = IPAddr.new(@tf2_server.address[/[^:]*/])
     port = @tf2_server.address[/\d*$/]
-    tf2_server = TF2Server.new(ip_address,port)
-    @tf2_server.players = tf2_server.server_info[:number_of_players] - tf2_server.server_info[:number_of_bots]
-    # Now, I'm not 100% sure how this works. tf2_server.server_info[:number_of_bots] would return the number of bots. Should we subtract that from the number of players? Or does it do that by default?
-    # TODO: Figure out whether bots count
-    @tf2_server.maxplayers = tf2_server.server_info[:max_players]
+    server = SourceServer.new(ip_address,port)
+
+    @tf2_server.players = server.server_info[:number_of_players] - server.server_info[:number_of_bots]
+    @tf2_server.maxplayers = server.server_info[:max_players]
     @tf2_server.free_spots = @tf2_server.maxplayers - @tf2_server.players
-    @tf2_server.map = tf2_server.server_info[:map_name]
-    @tf2_server.name = tf2_server.server_info[:server_name]
-    @tf2_server.tags = tf2_server.server_info[:server_tags]
+    @tf2_server.map = server.server_info[:map_name]
+    @tf2_server.name = server.server_info[:server_name]
+    @tf2_server.tags = server.server_info[:server_tags]
+
     if not @tf2_server.save
       flash[:error]="Server cannot be reached for comment"
       redirect_to tf2_servers_index_path
@@ -78,8 +79,8 @@ class Tf2ServersController < ApplicationController
   end
 
   def update_all_tf2_servers
-    @tf2_servers = Tf2Server.all
-    @tf2_server.each do |tf2_server|
+    servers = Tf2Server.all
+    servers.each do |tf2_server|
       update_tf2_server(tf2_server.id)
     end
   end

@@ -1,2 +1,2 @@
-module ServersHelper
+module Tf2ServersHelper
 end
