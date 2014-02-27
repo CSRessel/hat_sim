@@ -67,7 +67,6 @@ class TeamsController < ApplicationController
     redirect_to teams_path
   end
 
-  # TODO: kick_member method
   def kick_member
   end
 
@@ -78,8 +77,6 @@ class TeamsController < ApplicationController
     end
     redirect_to teams_path
   end
-
-  # TODO: playing on server as team
 
   private
 
