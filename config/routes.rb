@@ -2,8 +2,8 @@ HatSim::Application.routes.draw do
 
   # For the team url's
   resources :teams
-  get 'teams/:id/join', to: 'teams#join', as: 'join'
-  get 'teams/:id/reject', to: 'teams#reject', as: 'reject'
+  get 'teams/:id/join', to: 'teams#join', as: 'join_team'
+  get 'teams/:id/reject', to: 'teams#reject', as: 'reject_team'
 
   # For ransack's search path
   resources :tf2_servers do
@@ -14,6 +14,9 @@ HatSim::Application.routes.draw do
 
   # For the server paths
   resources :tf2_servers
+  get 'tf2_servers/:id/join', to: 'tf2_servers#join', as: 'join_tf2_server'
+  get 'tf2_servers/:id/leave', to: 'tf2_servers#leave', as: 'leave_tf2_server'
+  get 'tf2_servers/:id/ready', to: 'tf2_servers#ready', as: 'ready_tf2_server'
 
   # For devise routes:
   devise_for :users, :path => '', :path_names => { :sign_in => "signin", :sign_out => "signout", :sign_up => "register" }

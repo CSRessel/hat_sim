@@ -51,8 +51,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       ### End custom user fields
 
-      t.integer :tf2_server_id
-
       t.timestamps
     end
 

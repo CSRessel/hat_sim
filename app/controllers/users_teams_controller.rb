@@ -1,0 +1,2 @@
+class UsersTeamsController < ApplicationController
+end

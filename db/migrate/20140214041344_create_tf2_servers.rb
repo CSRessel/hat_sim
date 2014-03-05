@@ -14,6 +14,7 @@ class CreateServers < ActiveRecord::Migration
       # Dedicated only
       t.string :game, default: "unspecified", null:false
       t.string :password
+      t.boolean :playing
 
       # Non dedicated only
       t.string :tags

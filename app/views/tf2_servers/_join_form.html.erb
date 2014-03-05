@@ -1,0 +1,9 @@
+<%= form_tag join_tf2_server_path, :method=> "get" do %>
+
+  <div><%= label_tag :role %><br />
+  <%= select_tag :role, options_for_select(["scout", "soldier", "roaming soldier", "pocket soldier", "pyro", "demoman", "heavy", "engineer", "medic", "sniper", "spy"]) %></div>
+  <div><%= label_tag :team_color %><br />
+  <%= select_tag :team_color, options_for_select(%w[RED BLUE]) %></div>
+  <div><%= submit_tag 'join game' %></div>
+
+<% end %>

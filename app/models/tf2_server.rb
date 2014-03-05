@@ -1,7 +1,9 @@
 class Tf2Server < ActiveRecord::Base
 
-  has_many :users
+  has_many :teams
   has_many :reviews, :dependent => :destroy
+
+  accepts_nested_attributes_for :teams
 
   VALID_SERVER_ADDRESS = /\A\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}\z/
   validates :address, presence: true, format: { with: VALID_SERVER_ADDRESS }, uniqueness: true

@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.integer  "players",    default: 0
     t.string   "game",       default: "unspecified", null: false
     t.string   "password"
+    t.boolean  "playing"
     t.string   "tags"
     t.integer  "flags",      default: 0
     t.integer  "rating"
@@ -87,7 +88,9 @@ ActiveRecord::Schema.define(version: 20140217015959) do
   create_table "teams", force: true do |t|
     t.string   "name",                               null: false
     t.string   "game",       default: "unspecified", null: false
-    t.integer  "captain",                            null: false
+    t.integer  "captain"
+    t.boolean  "temporary"
+    t.integer  "tf2_server_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -134,7 +137,6 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "tf2_server_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
