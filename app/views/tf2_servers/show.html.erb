@@ -136,3 +136,32 @@
     </div>
   <% end %>
 </div>
+<div>
+  <h3>Reviews:</h3>
+  <% if @tf2_server.reviews.empty? %>
+  <div>
+    No reviews posted yet.
+  </div>
+  <% else %>
+  <!--TODO: Make this formatting be less crap awful-->
+  <table id="reviews" width="100%">
+    <% @tf2_server.reviews.each do |review| %>
+    <tr id="review">
+      <td>
+	<h5><%= review.title %></h5>
+	<div id="ratings">
+	  Administration: <%= review.rating_administration %> | Reliability: <%= review.rating_reliability %> | Speed: <%= review.rating_speed %> | Other: <%= review.rating_other %>
+	</div>
+	<p>
+	  "<%= review.content %>"
+	</p>
+	<div id="review_author" valign="center">
+	  -<%= review.user_id %>
+	</div>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+  <%= link_to 'Write a review!', new_review_path, {class: "btn btn-link"}%>
+  <% end %>
+</div>

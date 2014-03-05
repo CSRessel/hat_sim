@@ -11,12 +11,13 @@ class TeamsController < ApplicationController
       users_team = @team.users_teams.build
       users_team.accepted = false
     end
+    Rails.logger.info(@team.users_teams.size)
   end
 
   def create
     @team = Team.new(team_params)
-    #Rails.logger.info(team_params.to_yaml)
-    #Rails.logger.info(@team.to_yaml)
+    Rails.logger.info(team_params.to_yaml)
+    Rails.logger.info(@team.users_teams.size)
     @team.captain = current_user.id
     if @team.save
       flash[:success] = 'Team created'

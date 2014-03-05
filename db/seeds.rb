@@ -14,6 +14,13 @@
 @tf2_server_01.teams.build(name: @name_one_01)
 @tf2_server_01.teams.build(name: @name_two_01)
 @tf2_server_01.save!
+# I know we're enthusiastic about Rails, but is the ! really necessary? :P
+
+## REVIEW TEST
+
+Review.create!(rating_administration: '2', rating_speed: '1', rating_reliability: '3', rating_other: '2', content: 'playing on this server directly resulted in my house burning down. would not recommend', title: 'house literally on fire', tf2_server_id: '1', user_id: '2')
+
+##
 
 @tf2_server_02 = Tf2Server.create!(name: 'Super Fun Server - EST', address: '38.130.70.206:158', map: 'ph_hydro', password: 'pa55word1234', dedicated: 'false', game: 'unspecified', players: '8', maxplayers: '12', region: 'EST')
 @name_one_02 = "RED_#{@tf2_server_02.id}"
