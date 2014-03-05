@@ -7,10 +7,10 @@ class CreateReviews < ActiveRecord::Migration
       t.integer :rating_other
       t.string :content
       t.string :title
-
+      
       t.integer :tf2_server_id, null:false
       t.integer :user_id, null:false
-
+      
       t.timestamps
     end
   end
