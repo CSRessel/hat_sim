@@ -1,0 +1,40 @@
+<%= form_for(@review) do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% @review.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div>
+    <%= f.label :title %><%= f.text_field :title %>
+  </div>
+  <div>
+    <%= f.label :content %><%= f.text_area :content %>
+  </div>
+  <table id="rate">
+    <tr>
+      <td>Administration</td>
+      <td>Reliability</td>
+      <td>Speed</td>
+      <td>Other</td>
+    </tr>
+    <tr>
+      <td><%= f.select :rating_administration, options_for_select(%w[1 2 3 4 5 6 7 8 9 10]), :include_blank=>"rating" %></td>
+      <td><%= f.select :rating_reliability, options_for_select(%w[1 2 3 4 5 6 7 8 9 10]), :include_blank=>"rating" %></td>
+      <td><%= f.select :rating_speed, options_for_select(%w[1 2 3 4 5 6 7 8 9 10]), :include_blank=>"rating" %></td>
+      <td><%= f.select :rating_other, options_for_select(%w[1 2 3 4 5 6 7 8 9 10]), :include_blank=>"rating" %></td>
+    </tr>
+  </table>
+  <div>
+    Server ID: <%= f.text_field :tf2_server_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

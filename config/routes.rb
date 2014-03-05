@@ -1,5 +1,7 @@
 HatSim::Application.routes.draw do
 
+  resources :reviews
+
   # For the team url's
   resources :teams
   get 'teams/:id/join', to: 'teams#join', as: 'join_team'

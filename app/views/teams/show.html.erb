@@ -52,7 +52,7 @@
 
 <br />
 <% if current_user.id = @team.captain %>
-  <%= link_to "PLAY!", team_play_path(@team) %>
+  <%#= link_to "PLAY!", team_play_path(@team) %>
 <% end %>
 
 <p><%= link_to "Back to teams", teams_path %></p>

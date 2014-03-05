@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140217015959) do
+ActiveRecord::Schema.define(version: 20140305155222) do
 
   create_table "reviews", force: true do |t|
     t.integer  "rating_administration"
