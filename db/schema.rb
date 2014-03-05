@@ -68,7 +68,9 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.string   "name",                                  null: false
     t.string   "game",          default: "unspecified", null: false
     t.integer  "captain"
+    t.boolean  "playing"
     t.boolean  "temporary"
+    t.string   "color"
     t.integer  "tf2_server_id"
     t.datetime "created_at"
     t.datetime "updated_at"

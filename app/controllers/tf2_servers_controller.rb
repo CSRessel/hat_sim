@@ -36,8 +36,8 @@ class Tf2ServersController < ApplicationController
     #update_tf2_server(params[:id])
     @tf2_server = Tf2Server.find(params[:id])
     if @tf2_server.is_dedicated?
-      @team_one = @tf2_server.teams.first
-      @team_two = @tf2_server.teams.last
+      @team_one = @tf2_server.teams.find_by(color: "RED")
+      @team_two = @tf2_server.teams.find_by(color: "BLUE")
 
       @current_user_joined = false
       if not @team_one.users_teams.find_by(user_id: current_user.id).nil? or not @team_two.users_teams.find_by(user_id: current_user.id).nil?
@@ -76,7 +76,9 @@ class Tf2ServersController < ApplicationController
 
   def join
     @tf2_server = Tf2Server.find(params[:id])
-    if UsersTeam.find_by(user_id: current_user.id, team_id: @tf2_server.teams.first.id).nil? and UsersTeam.find_by(user_id: current_user.id, team_id: @tf2_server.teams.last.id).nil?
+    @team_one = @tf2_server.teams.find_by(color: "RED")
+    @team_two = @tf2_server.teams.find_by(color: "BLUE")
+    if UsersTeam.find_by(user_id: current_user.id, team_id: @team_one.id).nil? and UsersTeam.find_by(user_id: current_user.id, team_id: @team_two.id).nil?
       @users_team = UsersTeam.new(accepted: true, user_id: current_user.id, role: params[:role], team_id: @tf2_server.teams.find_by(name: "#{params[:team_color]}_#{@tf2_server.id}").id)
       if @users_team.save
         flash[:success] = 'Joined server'
@@ -89,8 +91,10 @@ class Tf2ServersController < ApplicationController
 
   def leave
     @tf2_server = Tf2Server.find(params[:id])
-    @users_team_1 = UsersTeam.find_by(user_id: current_user.id, team_id: @tf2_server.teams.first.id)
-    @users_team_2 = UsersTeam.find_by(user_id: current_user.id, team_id: @tf2_server.teams.last.id)
+    @team_one = @tf2_server.teams.find_by(color: "RED")
+    @team_two = @tf2_server.teams.find_by(color: "BLUE")
+    @users_team_1 = UsersTeam.find_by(user_id: current_user.id, team_id: @team_one.id)
+    @users_team_2 = UsersTeam.find_by(user_id: current_user.id, team_id: @team_two.id)
     if not @users_team_1.nil?
       @users_team_1.destroy
     elsif not @users_team_2.nil?
@@ -101,8 +105,10 @@ class Tf2ServersController < ApplicationController
 
   def ready
     @tf2_server = Tf2Server.find(params[:id])
-    @users_team_1 = UsersTeam.find_by(user_id: current_user.id, team_id: @tf2_server.teams.first.id)
-    @users_team_2 = UsersTeam.find_by(user_id: current_user.id, team_id: @tf2_server.teams.last.id)
+    @team_one = @tf2_server.teams.find_by(color: "RED")
+    @team_two = @tf2_server.teams.find_by(color: "BLUE")
+    @users_team_1 = UsersTeam.find_by(user_id: current_user.id, team_id: @team_one.id)
+    @users_team_2 = UsersTeam.find_by(user_id: current_user.id, team_id: @team_two.id)
     if not @users_team_1.nil?
       @users_team_1.ready = true
       @users_team_1.save
@@ -114,7 +120,29 @@ class Tf2ServersController < ApplicationController
   end
 
   def start
+    @team_one = @tf2_server.teams.find_by(color: "RED")
+    @team_two = @tf2_server.teams.find_by(color: "BLUE")
+
     @tf2_server = Tf2Server.find(params[:id])
+    @users_team_1 = UsersTeam.find_by(user_id: current_user.id, team_id: @team_one.id)
+    @users_team_2 = UsersTeam.find_by(user_id: current_user.id, team_id: @team_two.id)
+    if not @users_team_1.nil?
+      @users_team_1.destroy
+    elsif not @users_team_2.nil?
+      @users_team_2.destroy
+    end
+    if @team_one.users_teams.count + @team_two.users_teams.count == 0
+      @team_one.playing = false
+      @team_two.playing = false
+      @team_one.tf2_server_id = nil
+      @team_two.tf2_server_id = nil
+      @team_one.save
+      @team_two.save
+      @team_one = Team.find(name: "RED_#{@tf2_server.id}")
+      @team_two = Team.find(name: "BLUE_#{@tf2_server.id}")
+      @team_one.tf2_server_id = @tf2_server.id
+      @team_two.tf2_server_id = @tf2_server.id
+    end
   end
 
   def destroy
@@ -158,8 +186,12 @@ class Tf2ServersController < ApplicationController
     port = @tf2_server.address[/\d*$/]
     server = SourceServer.new(ip_address,port)
 
-    @tf2_server.players = server.server_info[:number_of_players] - server.server_info[:number_of_bots]
-    @tf2_server.maxplayers = server.server_info[:max_players]
+    if @tf2_server.is_not_dedicated?
+      @tf2_server.players = server.server_info[:number_of_players] - server.server_info[:number_of_bots]
+      @tf2_server.maxplayers = server.server_info[:max_players]
+    else
+      @tf2_server.players = @tf2_server.teams.first.users_teams.size + @tf2_server.teams.last.users.teams.size
+    end
     @tf2_server.free_spots = @tf2_server.maxplayers - @tf2_server.players
     @tf2_server.map = server.server_info[:map_name]
     @tf2_server.name = server.server_info[:server_name]

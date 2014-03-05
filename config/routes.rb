@@ -4,6 +4,7 @@ HatSim::Application.routes.draw do
   resources :teams
   get 'teams/:id/join', to: 'teams#join', as: 'join_team'
   get 'teams/:id/reject', to: 'teams#reject', as: 'reject_team'
+  get 'teams/:id/play', to: 'teams#play', as: 'team_play'
 
   # For ransack's search path
   resources :tf2_servers do

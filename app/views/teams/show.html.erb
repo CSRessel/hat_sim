@@ -8,27 +8,51 @@
 <% if current_user.id == @team.captain %>
   <p><%= link_to "Edit this team", edit_team_path(@team) %></p>
   <p><%= link_to "Delete this team (permanently)", @team, :confirm => 'Are you sure?', :method => :delete %></p>
+  <p>To delete users or invitations, edit the team and remove the user from the list.</p>
 <% end %>
-<p>To delete users or invitations, use edit the team and remove the user from the list.</p>
 
+<h4>Team captain: <%= User.find(@team.captain).username %></h4>
+<h4>Game type: <%= @team.game %></h4>
+<p>-----------------------------------------------------</p>
 <h3>Team members:</h3>
 <% if @confirmed_users.empty? %>
   <p>No members on this team.</p>
 <% else %>
+  <table>
+    <tr>
+      <th>Username:</th>
+      <th>Class:</th>
+    </tr>
   <% @confirmed_users.each do |confirmed_user| %>
-    <%= render 'confirmed_user', :confirmed_user => confirmed_user %>
+    <tr>
+      <td><%= confirmed_user.username %></td>
+      <td><%= UsersTeam.find_by(user_id: confirmed_user.id, team_id: @team.id).role %></td>
+    </tr>
   <% end %>
+  </table>
 <% end %>
-
+<p>-----------------------------------------------------</p>
 <h3>Unconfirmed members:</h3>
 <% if @unconfirmed_users.empty? %>
   <p>No invited members.</p>
 <% else %>
+  <table>
+    <tr>
+      <th>Username:</th>
+      <th>Class:</th>
+    </tr>
   <% @unconfirmed_users.each do |unconfirmed_user| %>
-    <%= render 'unconfirmed_user', :unconfirmed_user => unconfirmed_user %>
+    <tr>
+      <td><%= unconfirmed_user.username %></td>
+      <td><%= UsersTeam.find_by(user_id: unconfirmed_user.id, team_id: @team.id).role %></td>
+    </tr>
   <% end %>
+  </table>
 <% end %>
 
 <br />
+<% if current_user.id = @team.captain %>
+  <%= link_to "PLAY!", team_play_path(@team) %>
+<% end %>
 
 <p><%= link_to "Back to teams", teams_path %></p>

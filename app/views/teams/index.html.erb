@@ -14,18 +14,18 @@
     <tr>
       <th>Team Name</th>
       <th>Game Mode</th>
-      <th>Leave Team</th>
+      <th>Leave</th>
       <% if current_user.try(:admin?) %>
-        <th>Delete Team</th>
+        <th>Delete</th>
       <% end %>
     </tr>
     <% for team in @teams %>
       <tr>
         <td><%= link_to team.name, team_path(team) %></td>
         <td><%= team.game %></td>
-        <td><%= link_to "Leave", reject_team_path(team), :confirm => 'Are you sure?' %></td>
+        <td><%= link_to "leave", reject_team_path(team), :confirm => 'Are you sure?' %></td>
         <% if current_user.try(:admin?) %>
-          <td><%= link_to "Delete", team, :confirm => 'Are you sure?', :method => :delete %></td>
+          <td><%= link_to "delete", team, :confirm => 'Are you sure?', :method => :delete %></td>
         <% end %>
       </tr>
     <% end %>
@@ -42,15 +42,15 @@
     <tr>
       <th>Team Name</th>
       <th>Game Mode</th>
-      <th>Edit Team</th>
-      <th>Delete Team</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
     <% for team in @captained_teams %>
       <tr>
         <td><%= link_to team.name, team_path(team) %></td>
         <td><%= team.game %></td>
-        <td><%= link_to "Edit", edit_team_path(team) %></td>
-        <td><%= link_to "Delete", team, :confirm => 'Are you sure?', :method => :delete %></td>
+        <td><%= link_to "edit", edit_team_path(team) %></td>
+        <td><%= link_to "delete", team, :confirm => 'Are you sure?', :method => :delete %></td>
       </tr>
     <% end %>
   </table>
@@ -73,8 +73,8 @@
       <tr>
         <td><%= link_to team.name, team_path(team) %></td>
         <td><%= team.game %></td>
-        <td><%= link_to "Accept", join_team_path(team) %></td>
-        <td><%= link_to "Decline", reject_team_path(team) %></td>
+        <td><%= link_to "accept", join_team_path(team) %></td>
+        <td><%= link_to "decline", reject_team_path(team) %></td>
       </tr>
     <% end %>
   </table>

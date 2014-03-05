@@ -5,7 +5,9 @@ class CreateTeams < ActiveRecord::Migration
       t.string :game, null:false, default:'unspecified'
       t.integer :captain
       t.boolean :temporary
+      t.boolean :playing
       t.integer :tf2_server_id
+      t.string :color
 
       t.timestamps
     end
