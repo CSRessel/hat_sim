@@ -15,6 +15,8 @@ class TeamsController < ApplicationController
 
   def create
     @team = Team.new(team_params)
+    #Rails.logger.info(team_params.to_yaml)
+    #Rails.logger.info(@team.to_yaml)
     @team.captain = current_user.id
     if @team.save
       flash[:success] = 'Team created'
@@ -87,7 +89,7 @@ class TeamsController < ApplicationController
   def require_membership
     @team = Team.find(params[:id])
     @membership = UsersTeam.where(:team_id => @team.id).where(:user_id => current_user.id).first
-    if @membership.nil?
+    if @membership.nil? and current_user.id!=@team.captain
       redirect_to root_path
     end
   end

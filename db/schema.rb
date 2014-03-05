@@ -20,32 +20,11 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.integer  "rating_other"
     t.string   "content"
     t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "tf2_server_id",             null: false
+    t.integer  "tf2_server_id",         null: false
     t.integer  "user_id",               null: false
-  end
-
-  create_table "tf2_servers", force: true do |t|
-    t.string   "address",                            null: false
-    t.string   "map"
-    t.string   "region"
-    t.string   "name"
-    t.integer  "maxplayers"
-    t.boolean  "dedicated"
-    t.integer  "free_spots"
-    t.integer  "players",    default: 0
-    t.string   "game",       default: "unspecified", null: false
-    t.string   "password"
-    t.boolean  "playing"
-    t.string   "tags"
-    t.integer  "flags",      default: 0
-    t.integer  "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "tf2_servers", ["address"], name: "index_tf2_servers_on_address", unique: true
 
   create_table "stats", force: true do |t|
     t.integer  "tot_hours"
@@ -80,14 +59,14 @@ ActiveRecord::Schema.define(version: 20140217015959) do
     t.integer  "class_spy_points"
     t.string   "most_played_class"
     t.string   "most_successful_class"
+    t.integer  "user_id",               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",               null: false
   end
 
   create_table "teams", force: true do |t|
-    t.string   "name",                               null: false
-    t.string   "game",       default: "unspecified", null: false
+    t.string   "name",                                  null: false
+    t.string   "game",          default: "unspecified", null: false
     t.integer  "captain"
     t.boolean  "temporary"
     t.integer  "tf2_server_id"
@@ -97,15 +76,26 @@ ActiveRecord::Schema.define(version: 20140217015959) do
 
   add_index "teams", ["name"], name: "index_teams_on_name", unique: true
 
-  create_table "users_teams", force: true do |t|
-    t.string   "role"
-    t.boolean  "accepted"
-    t.boolean  "ready"
+  create_table "tf2_servers", force: true do |t|
+    t.string   "address",                            null: false
+    t.string   "map"
+    t.string   "region"
+    t.string   "name"
+    t.integer  "maxplayers"
+    t.boolean  "dedicated"
+    t.integer  "free_spots"
+    t.integer  "players",    default: 0
+    t.string   "game",       default: "unspecified", null: false
+    t.string   "password"
+    t.boolean  "playing"
+    t.string   "tags"
+    t.integer  "flags",      default: 0
+    t.integer  "rating"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",    null: false
-    t.integer  "team_id",    null: false
   end
+
+  add_index "tf2_servers", ["address"], name: "index_tf2_servers_on_address", unique: true
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -144,5 +134,15 @@ ActiveRecord::Schema.define(version: 20140217015959) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   add_index "users", ["steam_link"], name: "index_users_on_steam_link", unique: true
   add_index "users", ["username"], name: "index_users_on_username", unique: true
+
+  create_table "users_teams", force: true do |t|
+    t.string   "role"
+    t.integer  "user_id",    null: false
+    t.integer  "team_id",    null: false
+    t.boolean  "accepted"
+    t.boolean  "ready"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

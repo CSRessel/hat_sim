@@ -1,4 +1,4 @@
-class CreateServers < ActiveRecord::Migration
+class CreateTf2Servers < ActiveRecord::Migration
   def change
     create_table :tf2_servers do |t|
       # Used in all servers
