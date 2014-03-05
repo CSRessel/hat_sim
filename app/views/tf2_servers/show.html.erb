@@ -64,75 +64,77 @@
       <% end %>
     </table>
   </div>
-  <% if @tf2_server.is_dedicated? %>
-    <div class="span6 offset1">
-      <table>
-        <tr>
-          <td width="25%">
-            Game type:
-          </td>
-          <td>
-            <%= @tf2_server.game %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Red Team:
-          </td>
-          <td>
-            <% if @team_one.is_not_temporary? %>
-              <%= @team_one.name %>
-            <% end %>
-          </td>
-        </tr>
-        <% @team_one.users.each do |user| %>
-          <tr>
-            <td>
-              <%= user.username %>
-            </td>
-            <td>
-              <%= user.users_teams.where(:team_id => @team_one.id).first.role %>
-            </td>
-          </tr>
-        <% end %>
+<% if @tf2_server.is_dedicated? %>
+  <div class="span6 offset1">
+    <table>
+      <tr>
+        <td width="25%">
+          Game type:
+        </td>
+        <td>
+          <%= @tf2_server.game %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Red Team:
+        </td>
+        <td>
+          <% if @team_one.is_not_temporary? %>
+            <%= @team_one.name %>
+          <% end %>
+        </td>
+      </tr>
+      <% @team_one.users.each do |user| %>
         <tr>
           <td>
-            Blue Team:
+            <%= user.username %>
           </td>
           <td>
-            <% if @team_two.is_not_temporary? %>
-              <%= @team_two.name %>
-            <% end %>
+            <%= user.users_teams.find_by(team_id: @team_one.id).role %>
           </td>
         </tr>
-        <% @team_two.users.each do |user| %>
-          <tr>
-            <td>
-              <%= user.username %>
-            </td>
-            <td>
-              <%= user.users_teams.where(:team_id => @team_two.id).first.role %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
-    </div>
-    <div id="emergency_button_formatting">
-      <%= link_to 'back', tf2_servers_path, {class: "btn btn-link"} %>
-      <% if not @current_user_joined %>
-        <%= render "join_form" %>
-      <% else %>
-        <% if not @current_user_readied %>
-          <%= link_to 'ready', ready_tf2_server_path(@tf2_server), {class: "btn btn-link"} %>
-        <% else %>
-          <p>Waiting for all members to ready... Refresh to check if all members are ready.</p>
-        <% end %>
       <% end %>
-    </div>
+      <tr>
+        <td>
+          Blue Team:
+        </td>
+        <td>
+          <% if @team_two.is_not_temporary? %>
+            <%= @team_two.name %>
+          <% end %>
+        </td>
+      </tr>
+      <% @team_two.users_teams.each do |users_team| %>
+        <tr>
+          <td>
+            <%= users_team.user.username %>
+          </td>
+          <td>
+            <%= users_team.role %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+<div id="emergency_button_formatting">
+  <%= link_to 'back', tf2_servers_path, {class: "btn btn-link"} %>
+  <% if not @current_user_joined %>
+    <%= render "join_form" %>
   <% else %>
-    <div id="emergency_button_formatting">
-      <%= link_to 'back', tf2_servers_path, {class: "btn btn-link"} %>
-      <a href="steam://connect/<%= @tf2_server.address %>/<%= @tf2_server.password %>" class="btn btn-link">join</a>
-    </div>
+    <%= link_to 'leave', leave_tf2_server_path(@tf2_server), {class: "btn btn-link"} %>
+    <% if not @current_user_readied %>
+      <%= link_to 'ready', ready_tf2_server_path(@tf2_server), {class: "btn btn-link"} %>
+    <% else %>
+      <p>Waiting for all members to ready... Refresh to check if all members are ready.</p>
+    <% end %>
   <% end %>
 </div>
+<% else %>
+</div>
+<div id="emergency_button_formatting">
+  <%= link_to 'back', tf2_servers_path, {class: "btn btn-link"} %>
+  <a href="steam://connect/<%= @tf2_server.address %>/<%= @tf2_server.password %>" class="btn btn-link">join</a>
+</div>
+<% end %>

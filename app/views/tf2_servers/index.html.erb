@@ -58,6 +58,9 @@
       No servers found.
     </div>
     <% else %>
+      <div style="text-align: center;">
+        <%= will_paginate @tf2_servers %>
+      </div>
     <table id="servers" width="100%">
       <tr>
 	      <th><%= sort_link @search, :name, "Server Name" %></th>

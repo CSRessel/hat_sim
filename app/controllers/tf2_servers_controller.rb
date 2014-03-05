@@ -6,7 +6,7 @@ class Tf2ServersController < ApplicationController
   def index
     #update_all_tf2_servers
     @search = Tf2Server.search(params[:q])
-    @tf2_servers = @search.result(distinct: true)
+    @tf2_servers = @search.result(distinct: true).paginate(:page => params[:page], :per_page => 8)
   end
 
   def new
@@ -40,7 +40,7 @@ class Tf2ServersController < ApplicationController
       @team_two = @tf2_server.teams.last
 
       @current_user_joined = false
-      if not @team_one.users_teams.where(:user_id => current_user.id).blank? or not @tf2_server.teams.last.users_teams.where(:user_id => current_user.id).blank?
+      if not @team_one.users_teams.find_by(user_id: current_user.id).nil? or not @team_two.users_teams.find_by(user_id: current_user.id).nil?
         @current_user_joined = true
       end
 
@@ -64,10 +64,10 @@ class Tf2ServersController < ApplicationController
       end
 
       if @all_readied && @current_user_joined
-        render 'start'
+        redirect_to 'start' and return
       end
       @current_user_readied = false
-      if not @users_teams.where(:user_id => current_user.id).first.nil? and @users_teams.where(:user_id => current_user.id).first.ready
+      if not @users_teams.find_by(user_id: current_user.id).nil? and @users_teams.find_by(user_id: current_user.id).ready
         @current_user_readied = true
       end
       @users_team = UsersTeam.new()
@@ -76,27 +76,41 @@ class Tf2ServersController < ApplicationController
 
   def join
     @tf2_server = Tf2Server.find(params[:id])
-    @users_team = UsersTeam.new(accepted: true, user_id: current_user.id, role: params[:role])
-    if params[:team_color] == 'RED'
-      @users_team.team_id = @tf2_server.teams.where(:name => "RED_#{@tf2_server.id}").first.id
+    if UsersTeam.find_by(user_id: current_user.id, team_id: @tf2_server.teams.first.id).nil? and UsersTeam.find_by(user_id: current_user.id, team_id: @tf2_server.teams.last.id).nil?
+      @users_team = UsersTeam.new(accepted: true, user_id: current_user.id, role: params[:role], team_id: @tf2_server.teams.find_by(name: "#{params[:team_color]}_#{@tf2_server.id}").id)
+      if @users_team.save
+        flash[:success] = 'Joined server'
+      end
+      redirect_to @tf2_server, :notice => 'Server joined'
     else
-      @users_team.team_id = @tf2_server.teams.where(:name => "BLUE_#{@tf2_server.id}").first.id
+      redirect_to @tf2_server, :notice => 'You are already on this server'
     end
-    if @users_team.save
-      flash[:success] = 'Joined server'
-    end
-    render 'show'
   end
 
   def leave
     @tf2_server = Tf2Server.find(params[:id])
-    @tf2_server.users_teams.where(:user_id => current_user.id).ready = true
+    @users_team_1 = UsersTeam.find_by(user_id: current_user.id, team_id: @tf2_server.teams.first.id)
+    @users_team_2 = UsersTeam.find_by(user_id: current_user.id, team_id: @tf2_server.teams.last.id)
+    if not @users_team_1.nil?
+      @users_team_1.destroy
+    elsif not @users_team_2.nil?
+      @users_team_2.destroy
+    end
+    redirect_to @tf2_server, :notice => 'You have left this server'
   end
 
   def ready
     @tf2_server = Tf2Server.find(params[:id])
-    @tf2_server.users_teams.where(:user_id => current_user.id).ready = true
-    render 'show', :notice => "You are ready! The game will start when everyone is ready."
+    @users_team_1 = UsersTeam.find_by(user_id: current_user.id, team_id: @tf2_server.teams.first.id)
+    @users_team_2 = UsersTeam.find_by(user_id: current_user.id, team_id: @tf2_server.teams.last.id)
+    if not @users_team_1.nil?
+      @users_team_1.ready = true
+      @users_team_1.save
+    elsif not @users_team_2.nil?
+      @users_team_2.ready = true
+      @users_team_2.save
+    end
+    redirect_to @tf2_server, :notice => 'You are ready'
   end
 
   def start
@@ -117,7 +131,6 @@ class Tf2ServersController < ApplicationController
 
   def tf2_server_params
     params.require(:tf2_server).permit(:address, :name, :password, :password_confirmation, :tags, :region, :dedicated, :game)
-    #params.require(:tf2_server).permit(:address, :name, :password, :tags, :region, :dedicated, :game)
   end
 
   def remove_passwd_conf

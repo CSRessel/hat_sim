@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def full_title(page_title)
     # TODO: put in a final name
-    base_title = "Hat Simulator Helper"
+    base_title = "HSH"
     if page_title.empty?
       base_title
     else
