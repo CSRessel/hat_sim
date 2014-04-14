@@ -91,7 +91,7 @@ HatSim::Application.configure do
     :authentication => :login,
     # TODO: switch to using ENV variables for username and password
     :user_name => "hat.sim.help@gmail.com",
-    :password => "spyisbestclass"
+    :password => "PASSWORD GOES HERE" # note: password changed from previous
   }
   #--------------------
 
